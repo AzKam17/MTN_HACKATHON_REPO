@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f49ff8b8-a93a-4308-b801-48d42b2a2161" name="Changes" comment="Ajout Carbon&#10;Operations lifecycles User">
+    <list default="true" id="f49ff8b8-a93a-4308-b801-48d42b2a2161" name="Changes" comment="Base Tontine (solde, nom)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Tontine.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Tontine.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,6 +179,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "build.tools",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -195,7 +197,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1662653197818</updated>
-      <workItem from="1662653199979" duration="5519000" />
+      <workItem from="1662653199979" duration="8386000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout Carbon&#10;Operations lifecycles User">
       <created>1662676145403</created>
@@ -204,7 +206,21 @@
       <option name="project" value="LOCAL" />
       <updated>1662676145403</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Ajout phpMyAdmin">
+      <created>1662676292633</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1662676292633</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Base Tontine (solde, nom)">
+      <created>1662676489440</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1662676489440</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,6 +239,12 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Ajout Carbon&#10;Operations lifecycles User" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout Carbon&#10;Operations lifecycles User" />
+    <MESSAGE value="Ajout phpMyAdmin" />
+    <MESSAGE value="Base Tontine (solde, nom)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Base Tontine (solde, nom)" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

@@ -5,12 +5,15 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\HasLifecycleCallbacks]
+#[ORM\Table(name: 't_users')]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -51,6 +54,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $updatedAt = null;
+
+    #[ORM\OneToMany(mappedBy: 'createdBy', targetEntity: Tontine::class)]
+    private Collection $createdTontines;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserTontine::class)]
+    private Collection $userTontines;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Cotisation::class)]
+    private Collection $cotisations;
+
+    public function __construct()
+    {
+        $this->createdTontines = new ArrayCollection();
+        $this->userTontines = new ArrayCollection();
+        $this->cotisations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -209,8 +228,99 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    #[ORM\PrePersist]
     public function prePersistOps()
     {
         $this->setSolde(0);
+    }
+
+    /**
+     * @return Collection<int, Tontine>
+     */
+    public function getCreatedTontines(): Collection
+    {
+        return $this->createdTontines;
+    }
+
+    public function addCreatedTontine(Tontine $createdTontine): self
+    {
+        if (!$this->createdTontines->contains($createdTontine)) {
+            $this->createdTontines->add($createdTontine);
+            $createdTontine->setCreatedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCreatedTontine(Tontine $createdTontine): self
+    {
+        if ($this->createdTontines->removeElement($createdTontine)) {
+            // set the owning side to null (unless already changed)
+            if ($createdTontine->getCreatedBy() === $this) {
+                $createdTontine->setCreatedBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UserTontine>
+     */
+    public function getUserTontines(): Collection
+    {
+        return $this->userTontines;
+    }
+
+    public function addUserTontine(UserTontine $userTontine): self
+    {
+        if (!$this->userTontines->contains($userTontine)) {
+            $this->userTontines->add($userTontine);
+            $userTontine->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserTontine(UserTontine $userTontine): self
+    {
+        if ($this->userTontines->removeElement($userTontine)) {
+            // set the owning side to null (unless already changed)
+            if ($userTontine->getUser() === $this) {
+                $userTontine->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Cotisation>
+     */
+    public function getCotisations(): Collection
+    {
+        return $this->cotisations;
+    }
+
+    public function addCotisation(Cotisation $cotisation): self
+    {
+        if (!$this->cotisations->contains($cotisation)) {
+            $this->cotisations->add($cotisation);
+            $cotisation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCotisation(Cotisation $cotisation): self
+    {
+        if ($this->cotisations->removeElement($cotisation)) {
+            // set the owning side to null (unless already changed)
+            if ($cotisation->getUser() === $this) {
+                $cotisation->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }
