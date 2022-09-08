@@ -16,6 +16,16 @@ services:
         ports:
             - '55002:3306'
 
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - '55001:80'
+        restart: always
+        environment:
+            PMA_HOST: mysql
+        depends_on:
+            - mysql
+
     webserver:
         image: 'nginx:alpine'
         working_dir: /app
