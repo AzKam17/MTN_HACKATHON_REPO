@@ -11,6 +11,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 #[ORM\HasLifecycleCallbacks]
 #[ORM\Table(name: 't_users')]
@@ -40,13 +41,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     private ?string $tel = null;
 
     #[ORM\Column]
     private ?float $solde = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     private ?string $slug = null;
 
     #[ORM\Column]
@@ -194,10 +195,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
+    #[ORM\PrePersist]
+    public function setSlug(): self
     {
-        $this->slug = $slug;
-
+        $slugger = new AsciiSlugger();
+        $this->slug = $slugger->slug(
+            $this->nom . ' ' .
+            $this->prenom.' '.
+            $this->tel
+        )->lower();
         return $this;
     }
 
@@ -231,7 +237,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\PrePersist]
     public function prePersistOps()
     {
-        $this->setSolde(0);
+        if ($this->solde === null) {
+            $this->setSolde(0);
+        }
     }
 
     /**

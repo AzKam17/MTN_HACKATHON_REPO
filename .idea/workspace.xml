@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f49ff8b8-a93a-4308-b801-48d42b2a2161" name="Changes" comment="Entites de base">
+    <list default="true" id="f49ff8b8-a93a-4308-b801-48d42b2a2161" name="Changes" comment="State pour les transactions">
+      <change afterPath="$PROJECT_DIR$/src/Service/CreateUser.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/Transaction/DepotCompte.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Transaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Transaction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,7 +206,7 @@
       <option name="presentableId" value="Default" />
       <updated>1662653197818</updated>
       <workItem from="1662653199979" duration="8768000" />
-      <workItem from="1662713326362" duration="337000" />
+      <workItem from="1662713326362" duration="5144000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout Carbon&#10;Operations lifecycles User">
       <created>1662676145403</created>
@@ -234,7 +236,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662679296242</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="State pour les transactions">
+      <created>1662713691090</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1662713691090</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,7 +265,8 @@
     <MESSAGE value="Ajout phpMyAdmin" />
     <MESSAGE value="Base Tontine (solde, nom)" />
     <MESSAGE value="Entites de base" />
-    <option name="LAST_COMMIT_MESSAGE" value="Entites de base" />
+    <MESSAGE value="State pour les transactions" />
+    <option name="LAST_COMMIT_MESSAGE" value="State pour les transactions" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
