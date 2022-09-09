@@ -31,6 +31,9 @@ class Transaction
     #[ORM\Column(length: 255)]
     private ?string $typeSdr = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $state = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -93,6 +96,18 @@ class Transaction
     public function setTypeSdr(string $typeSdr): self
     {
         $this->typeSdr = $typeSdr;
+
+        return $this;
+    }
+
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+
+    public function setState(string $state): self
+    {
+        $this->state = $state;
 
         return $this;
     }

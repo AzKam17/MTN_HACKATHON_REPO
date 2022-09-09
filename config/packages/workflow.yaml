@@ -1,0 +1,25 @@
+framework:
+    workflows:
+        transaction_state:
+            type: 'state_machine'
+            marking_store:
+                type: 'method'
+                property: 'setState'
+            supports:
+                - App\Entity\Transaction
+            initial_marking: 'new'
+            places:
+                - 'new'
+                - 'pending'
+                - 'completed'
+                - 'cancelled'
+            transitions:
+                start:
+                    from: 'new'
+                    to: 'pending'
+                complete:
+                    from: 'pending'
+                    to: 'completed'
+                cancel:
+                    from: 'pending'
+                    to: 'cancelled'
