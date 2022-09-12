@@ -13,6 +13,7 @@ services:
             - MYSQL_DATABASE=iabd_mtn
             - MYSQL_USER=azk
             - MYSQL_PASSWORD=esatic
+            - MYSQL_ROOT_PASSWORD=esatic
         ports:
             - '55002:3306'
 

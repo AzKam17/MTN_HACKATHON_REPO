@@ -134,5 +134,9 @@ class CreateUserTest extends TestCase
 
         //Assert User Solde
         $this->assertEquals(9999999999999, $user->getSolde());
+
+        //Remove User
+        $entityManager->remove($user);
+        $entityManager->flush();
     }
 }

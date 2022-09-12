@@ -20,5 +20,19 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    acme_api.event.jwt_created_listener:
+        class: App\EventListener\JWTCreatedListener
+        arguments: [ '@request_stack' ]
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: onJWTCreated }
+
+
+    App\Service\Transaction\DepotCompte:
+        public: true
+    App\Service\Transaction\Retrait:
+        public: true
+    App\Service\Tontine\CreateTontine:
+        public: true
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

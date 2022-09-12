@@ -26,7 +26,7 @@ class Tontine
 
     //Solde de la tontine
     #[ORM\Column(length: 255)]
-    private ?string $solde = null;
+    private ?float $solde = null;
 
     //Montant de la cotisation
     #[ORM\ManyToOne]
@@ -48,7 +48,7 @@ class Tontine
     private ?string $slug = null;
 
     //Membres de la tontine
-    #[ORM\OneToMany(mappedBy: 'tontine', targetEntity: UserTontine::class)]
+    #[ORM\OneToMany(mappedBy: 'tontine', targetEntity: UserTontine::class, cascade: ['persist', 'remove'])]
     private Collection $membres;
 
     //Nombre de tours
@@ -67,6 +67,9 @@ class Tontine
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $updatedAt = null;
 
+    #[ORM\Column]
+    private ?bool $isActive = null;
+
     public function __construct()
     {
         $this->membres = new ArrayCollection();
@@ -83,6 +86,7 @@ class Tontine
                 $this->getNom()
             )->toString())
         );
+        $this->setIsActive(true);
     }
 
     public function getId(): ?int
@@ -102,12 +106,12 @@ class Tontine
         return $this;
     }
 
-    public function getSolde(): ?string
+    public function getSolde(): ?float
     {
         return $this->solde;
     }
 
-    public function setSolde(string $solde): self
+    public function setSolde(float $solde): self
     {
         $this->solde = $solde;
 
@@ -274,6 +278,18 @@ class Tontine
     public function setUpdatedAt(): self
     {
         $this->updatedAt = Carbon::now();
+
+        return $this;
+    }
+
+    public function isIsActive(): ?bool
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive(bool $isActive): self
+    {
+        $this->isActive = $isActive;
 
         return $this;
     }

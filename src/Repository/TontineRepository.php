@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Tontine;
+use App\Entity\Transaction;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

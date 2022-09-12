@@ -4,7 +4,6 @@ namespace App\DataFixtures;
 
 use App\Service\CreateUser;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
 
 class ServicesAccountFixtures extends Fixture
@@ -20,7 +19,7 @@ class ServicesAccountFixtures extends Fixture
      */
     public function load(ObjectManager $manager): void
     {
-        ($this->createUser)
+        $user = ($this->createUser)
         (...[
             'username' => 'Admin',
             'nom' => 'admin',
@@ -29,5 +28,8 @@ class ServicesAccountFixtures extends Fixture
             'password' => 'esatic',
             'solde' => 1000000,
         ]);
+
+        $manager->persist($user);
+        $manager->flush();
     }
 }
