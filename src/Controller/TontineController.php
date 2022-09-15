@@ -6,10 +6,13 @@ use App\Entity\MontantTontine;
 use App\Entity\PeriodiciteTontine;
 use App\Entity\Tontine;
 use App\Entity\Transaction;
+use App\Entity\TypeTontine;
 use App\Entity\User;
 use App\Entity\UserTontine;
 use App\Repository\MontantTontineRepository;
+use App\Repository\PeriodiciteTontineRepository;
 use App\Repository\TransactionRepository;
+use App\Repository\TypeTontineRepository;
 use App\Service\Tontine\AddMember;
 use App\Service\Tontine\CreateTontine;
 use App\Service\Tontine\GetUserTontintes;
@@ -188,5 +191,29 @@ class TontineController extends AbstractController
                 'value' => $montant->getValeur(),
             ];
         }, $montants), 200);
+    }
+
+    #[Route('/periodicites', name: 'app_tontine_periodicites', methods: ['GET'])]
+    public function findAllPeriodicite(PeriodiciteTontineRepository $repository): JsonResponse
+    {
+        $periodicites = $repository->findAll();
+        return $this->json(array_map(function(PeriodiciteTontine $periodicite){
+            return [
+                'id' => $periodicite->getId(),
+                'value' => $periodicite->getValue(),
+            ];
+        }, $periodicites), 200);
+    }
+
+    #[Route('/types', name: 'app_tontine_types', methods: ['GET'])]
+    public function findAllType(TypeTontineRepository $repository): JsonResponse
+    {
+        $types = $repository->findAll();
+        return $this->json(array_map(function(TypeTontine $type){
+            return [
+                'id' => $type->getId(),
+                'value' => $type->getValue(),
+            ];
+        }, $types), 200);
     }
 }
