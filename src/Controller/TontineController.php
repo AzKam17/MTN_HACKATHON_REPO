@@ -50,9 +50,13 @@ class TontineController extends AbstractController
         $user = $this->getUser();
         try{
             $data['createdBy'] = $user;
-            $data['montant'] = $manager->getRepository(MontantTontine::class)->find($data['montant']);
-            $data['periodicite'] = $manager->getRepository(PeriodiciteTontine::class)->find($data['periodicite']);
-            $tontine = $createTontine(...$data);
+            $tontine = $createTontine(
+                $data['nom'],
+                $manager->getRepository(MontantTontine::class)->find($data['montant']),
+                $manager->getRepository(PeriodiciteTontine::class)->find($data['periodicite']),
+                $manager->getRepository(TypeTontine::class)->find($data['type']),
+                $user,
+            );
             $manager->persist($tontine);
             $manager->flush();
         }catch (\Exception $e){
@@ -148,7 +152,7 @@ class TontineController extends AbstractController
         ], 201);
     }
 
-    #[Route('ge', name: 'app_tontine_all', methods: ['GET'])]
+    #[Route('/my-tontines', name: 'app_tontine_all', methods: ['GET'])]
     public function findAllTontine(GetUserTontintes $getUserTontintes, TransactionRepository $repository): JsonResponse
     {
         /** @var User $user */
