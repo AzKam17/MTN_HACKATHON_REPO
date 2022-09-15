@@ -28,7 +28,13 @@ class UserController extends AbstractController
     {
         /** @var User $user */
         $user = $this->getUser();
-        return $this->json($user->getId(), 200);
+        return $this->json([
+            'id' => $user->getId(),
+            'nom' => $user->getNom(),
+            'prenom' => $user->getPrenom(),
+            'tel' => $user->getTel(),
+            'solde' => $user->getSolde(),
+        ], 200);
     }
 
     //Get user id from tel
@@ -37,7 +43,13 @@ class UserController extends AbstractController
     {
         $user = $manager->getRepository(User::class)->findOneBy(['tel' => $tel]);
         if ($user) {
-            return $this->json($user->getId(), 200);
+            return $this->json([
+                'id' => $user->getId(),
+                'nom' => $user->getNom(),
+                'prenom' => $user->getPrenom(),
+                'tel' => $user->getTel(),
+                'solde' => $user->getSolde(),
+            ], 200);
         }
         return $this->json(['message' => 'User not found'], 404);
     }
