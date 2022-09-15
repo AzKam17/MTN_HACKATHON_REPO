@@ -41,4 +41,36 @@ class UserController extends AbstractController
         }
         return $this->json(['message' => 'User not found'], 404);
     }
+
+    //Get User infos
+    #[Route('/infos', name: 'user_infos', methods: ['GET'])]
+    public function findUserInfos(): JsonResponse
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+        return $this->json([
+            'id' => $user->getId(),
+            'nom' => $user->getNom(),
+            'prenom' => $user->getPrenom(),
+            'tel' => $user->getTel(),
+            'solde' => $user->getSolde(),
+        ], 200);
+    }
+
+    //Get User infos from tel
+    #[Route('/infos/{tel}', name: 'user_infos_from_tel', methods: ['GET'])]
+    public function findUserInfosFromTel(string $tel, EntityManagerInterface $manager): JsonResponse
+    {
+        $user = $manager->getRepository(User::class)->findOneBy(['tel' => $tel]);
+        if ($user) {
+            return $this->json([
+                'id' => $user->getId(),
+                'nom' => $user->getNom(),
+                'prenom' => $user->getPrenom(),
+                'tel' => $user->getTel(),
+                'solde' => $user->getSolde(),
+            ], 200);
+        }
+        return $this->json(['message' => 'User not found'], 404);
+    }
 }
