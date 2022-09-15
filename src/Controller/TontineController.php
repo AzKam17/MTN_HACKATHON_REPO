@@ -8,6 +8,7 @@ use App\Entity\Tontine;
 use App\Entity\Transaction;
 use App\Entity\User;
 use App\Entity\UserTontine;
+use App\Repository\MontantTontineRepository;
 use App\Repository\TransactionRepository;
 use App\Service\Tontine\AddMember;
 use App\Service\Tontine\CreateTontine;
@@ -175,5 +176,17 @@ class TontineController extends AbstractController
                 }, $repository->getTontinesTransactions($tontine)),
             ];
         }, $tontines), 200);
+    }
+
+    #[Route('/montants', name: 'app_tontine_montants', methods: ['GET'])]
+    public function findAllMontant(MontantTontineRepository $repository): JsonResponse
+    {
+        $montants = $repository->findAll();
+        return $this->json(array_map(function(MontantTontine $montant){
+            return [
+                'id' => $montant->getId(),
+                'value' => $montant->getValeur(),
+            ];
+        }, $montants), 200);
     }
 }
