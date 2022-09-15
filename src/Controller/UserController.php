@@ -36,6 +36,9 @@ class UserController extends AbstractController
     public function findUserIdFromTel(string $tel, EntityManagerInterface $manager): JsonResponse
     {
         $user = $manager->getRepository(User::class)->findOneBy(['tel' => $tel]);
-        return $this->json($user->getId(), 200);
+        if ($user) {
+            return $this->json($user->getId(), 200);
+        }
+        return $this->json(['message' => 'User not found'], 404);
     }
 }
