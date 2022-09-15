@@ -65,6 +65,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Cotisation::class)]
     private Collection $cotisations;
 
+    #[ORM\Column]
+    private ?bool $kycVerified = null;
+
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?UserKyc $userKyc = null;
+
     public function __construct()
     {
         $this->createdTontines = new ArrayCollection();
@@ -240,6 +246,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->solde === null) {
             $this->setSolde(0);
         }
+        $this->setKycVerified(false);
     }
 
     /**
@@ -328,6 +335,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $cotisation->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isKycVerified(): ?bool
+    {
+        return $this->kycVerified;
+    }
+
+    public function setKycVerified(bool $kycVerified): self
+    {
+        $this->kycVerified = $kycVerified;
+
+        return $this;
+    }
+
+    public function getUserKyc(): ?UserKyc
+    {
+        return $this->userKyc;
+    }
+
+    public function setUserKyc(UserKyc $userKyc): self
+    {
+        // set the owning side of the relation if necessary
+        if ($userKyc->getUser() !== $this) {
+            $userKyc->setUser($this);
+        }
+
+        $this->userKyc = $userKyc;
 
         return $this;
     }

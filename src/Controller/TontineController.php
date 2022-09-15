@@ -148,7 +148,7 @@ class TontineController extends AbstractController
         ], 201);
     }
 
-    #[Route('/my-tontines', name: 'app_tontine_all', methods: ['GET'])]
+    #[Route('ge', name: 'app_tontine_all', methods: ['GET'])]
     public function findAllTontine(GetUserTontintes $getUserTontintes, TransactionRepository $repository): JsonResponse
     {
         /** @var User $user */

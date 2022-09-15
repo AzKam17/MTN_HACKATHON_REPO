@@ -47,4 +47,18 @@ class AuthController extends AbstractController
             'message' => 'Phone available',
         ], 200);
     }
+
+    #[Route('/api/public/kyc', name: 'app_kyc', methods: ['POST'])]
+    public function checkKYC(Request $request, EntityManagerInterface $manager): JsonResponse
+    {
+        dump($this->getUser());
+        //Get files received
+        $files = $request->files->all();
+        //Get POST data
+        $data = json_decode($request->getContent(), true);
+        dump($files);
+        return $this->json([
+            'message' => 'KYC done',
+        ], 200);
+    }
 }

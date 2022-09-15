@@ -6,6 +6,7 @@ use App\Entity\ListeRetrait;
 use App\Entity\MontantTontine;
 use App\Entity\PeriodiciteTontine;
 use App\Entity\Tontine;
+use App\Entity\TypeTontine;
 use App\Entity\User;
 use App\Entity\UserTontine;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,6 +20,7 @@ class CreateTontine
         string $nom,
         MontantTontine $montant,
         PeriodiciteTontine $periodicite,
+        TypeTontine $type,
         User $createdBy,
         int $compteur = 0,
         int $solde = 0,
@@ -28,6 +30,7 @@ class CreateTontine
         $tontine->setNom($nom);
         $tontine->setMontant($montant);
         $tontine->setPeriodicite($periodicite);
+        $tontine->setType($type);
         $tontine->setCompteur($compteur);
         $tontine->setSolde($solde);
         $tontine->setCreatedBy($createdBy);

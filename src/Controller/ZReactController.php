@@ -19,4 +19,10 @@ class ZReactController extends AbstractController
     {
         return $this->render('react/index.html.twig', []);
     }
+
+    #[Route('/tontine/{anystring}', name: 'app_react_tontine')]
+    public function tontine(): Response
+    {
+        return $this->render('react/index.html.twig', []);
+    }
 }

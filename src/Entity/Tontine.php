@@ -70,6 +70,10 @@ class Tontine
     #[ORM\Column]
     private ?bool $isActive = null;
 
+    #[ORM\ManyToOne(inversedBy: 'tontines')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?TypeTontine $type = null;
+
     public function __construct()
     {
         $this->membres = new ArrayCollection();
@@ -290,6 +294,18 @@ class Tontine
     public function setIsActive(bool $isActive): self
     {
         $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    public function getType(): ?TypeTontine
+    {
+        return $this->type;
+    }
+
+    public function setType(?TypeTontine $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }
