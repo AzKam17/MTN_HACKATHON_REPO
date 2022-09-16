@@ -30,9 +30,8 @@ class CreateUser
         float $solde = 0,
     ) : User
     {
-        //Check if User already exists BY username
-        $user = $this->userRepository->findOneBy(['username' => $username]);
-        if ($user) {
+        //Check if User already exists BY username or tel
+        if ($this->userRepository->findOneBy(['username' => $username]) || $this->userRepository->findOneBy(['tel' => $tel])) {
             throw new \Exception('User already exists');
         }
         $user = new User();
