@@ -310,7 +310,7 @@ class Tontine
         return $this;
     }
 
-    public function toArray(): array
+    public function getAvancement(): ?array
     {
         //If compteur is superior to 0
         if ($this->getCompteur() > 0) {
@@ -336,17 +336,19 @@ class Tontine
             }
             //Percentage of users that have not paid
             $percentage = count($usersNotPaid) / count($userTontines) * 100;
-            $avancement = [
+            return [
                 'pourcentage' => $percentage,
                 'retard' => array_map(function (User $user){
                     return $user->toArray();
                 }, $usersNotPaid)
             ];
         } else {
-            $avancement = [];
+            return [];
         }
+    }
 
-
+    public function toArray(): array
+    {
         return [
             'id' => $this->getId(),
             'nom' => $this->getNom(),
@@ -360,7 +362,7 @@ class Tontine
             'updatedAt' => $this->getUpdatedAt()->format('d/m/Y'),
             'isActive' => $this->isIsActive(),
             'type' => $this->getType()->getValue(),
-            'avancement' => $avancement,
+            'avancement' => $this->getAvancement(),
             'members' => $this
                 ->getMembres()
                 ->map(function (UserTontine $userTontine){
