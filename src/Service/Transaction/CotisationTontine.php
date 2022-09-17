@@ -49,6 +49,7 @@ class CotisationTontine
             $transaction->setMontant($montant);
 
             $cotisation = new Cotisation();
+            $cotisation->setTontine($receiver);
             $cotisation->setTour($receiver->getCompteur());
             $cotisation->setUser($sender);
 
