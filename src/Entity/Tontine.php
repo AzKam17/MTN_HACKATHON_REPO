@@ -325,7 +325,7 @@ class Tontine
             }
 
             //Get all users for this tontine
-            $userTontines = $tontine->getMembres();
+            $userTontines = $this->getMembres();
 
             //Get the users that have not paid
             $usersNotPaid = [];
