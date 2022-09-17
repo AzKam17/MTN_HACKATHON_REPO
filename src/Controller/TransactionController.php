@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Tontine;
 use App\Entity\User;
 use App\Service\Transaction\CotisationTontine;
+use App\Service\Transaction\RechargementTontine;
 use App\Service\Transaction\Retrait;
 use App\Service\Transaction\Transfert;
 use Doctrine\ORM\EntityManagerInterface;
@@ -109,6 +110,32 @@ class TransactionController extends AbstractController
         try{
             $result = $retrait(
                 $admin, $user, $montant
+            );
+        }catch (\Exception $e){
+            return $this->json([
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+
+        return $this->json([
+            'message' => 'Transaction done',
+            'object' => $result->toArray(),
+        ], 201);
+    }
+
+    #[Route('/rechargement', name: 'app_transaction_rechargement', methods: ['POST'])]
+    public function rechargement(RechargementTontine $rechargementTontine, Request $request, EntityManagerInterface $manager): JsonResponse
+    {
+        //Get POST data
+        $data = json_decode($request->getContent(), true);
+        //Get actual User
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $montant = $data['montant'] ?? 0;
+        try{
+            $result = $rechargementTontine(
+                $user, $montant
             );
         }catch (\Exception $e){
             return $this->json([

@@ -26,7 +26,7 @@ class ServicesAccountFixtures extends Fixture
             'prenom' => 'admin',
             'tel' => '0779136356',
             'password' => 'esatic',
-            'solde' => 1000000,
+            'solde' => 1000000000000000000000000000000000000,
         ]);
 
         $manager->persist($user);

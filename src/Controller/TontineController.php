@@ -11,9 +11,11 @@ use App\Entity\User;
 use App\Entity\UserTontine;
 use App\Repository\MontantTontineRepository;
 use App\Repository\PeriodiciteTontineRepository;
+use App\Repository\TontineRepository;
 use App\Repository\TransactionRepository;
 use App\Repository\TypeTontineRepository;
 use App\Service\Tontine\AddMember;
+use App\Service\Tontine\AvancementTontine;
 use App\Service\Tontine\CreateTontine;
 use App\Service\Tontine\GetUserTontintes;
 use App\Service\Tontine\RemoveMember;
@@ -188,5 +190,26 @@ class TontineController extends AbstractController
                 'value' => $type->getValue(),
             ];
         }, $types), 200);
+    }
+
+    #[Route('/avancement', name: 'app_tontine_avancement', methods: ['GET'])]
+    public function getAvancement(AvancementTontine $avancementTontine, TontineRepository $tontineRepository): JsonResponse
+    {
+        //Get tontine id from query
+        $tontineId = $this->request->query->get('tontine');
+
+        //Find tontine from id
+        $tontine = $tontineRepository->find($tontineId);
+
+        //If tontine doesnt exist
+        if(!$tontine){
+            return $this->json([
+                'message' => 'Tontine doesnt exist',
+            ], 404);
+        }
+
+        $avancementTontine = $avancementTontine($tontineId);
+
+        return $this->json($avancementTontine, 200);
     }
 }
