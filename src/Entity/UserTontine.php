@@ -94,4 +94,13 @@ class UserTontine
     {
         $this->setIsRemoved(false);
     }
+
+    public function toArray()
+    {
+        return [
+            'id' => $this->getId(),
+            'user' => $this->getUser()->toArray(),
+            'createdAt' => $this->getCreatedAt(),
+        ];
+    }
 }

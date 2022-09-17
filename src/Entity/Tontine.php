@@ -325,6 +325,12 @@ class Tontine
             'updatedAt' => $this->getUpdatedAt()->format('d/m/Y'),
             'isActive' => $this->isIsActive(),
             'type' => $this->getType()->getValue(),
+            'members' => $this
+                ->getMembres()
+                ->map(function (UserTontine $userTontine){
+                    return $userTontine->isIsRemoved() ? null : $userTontine->toArray();
+                })
+            ->toArray(),
         ];
     }
 }
