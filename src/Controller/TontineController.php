@@ -62,6 +62,7 @@ class TontineController extends AbstractController
         }catch (\Exception $e){
             return $this->json([
                 'message' => 'Internal server error _ ' . $e->getMessage(),
+                'result' => $tontine->toArray()
             ], 500);
         }
 
@@ -184,30 +185,6 @@ class TontineController extends AbstractController
                 }, $repository->getTontinesTransactions($tontine)),
             ];
         }, $tontines), 200);
-    }
-
-    #[Route('/montants', name: 'app_tontine_montants', methods: ['GET'])]
-    public function findAllMontant(MontantTontineRepository $repository): JsonResponse
-    {
-        $montants = $repository->findAll();
-        return $this->json(array_map(function(MontantTontine $montant){
-            return [
-                'id' => $montant->getId(),
-                'value' => $montant->getValeur(),
-            ];
-        }, $montants), 200);
-    }
-
-    #[Route('/periodicites', name: 'app_tontine_periodicites', methods: ['GET'])]
-    public function findAllPeriodicite(PeriodiciteTontineRepository $repository): JsonResponse
-    {
-        $periodicites = $repository->findAll();
-        return $this->json(array_map(function(PeriodiciteTontine $periodicite){
-            return [
-                'id' => $periodicite->getId(),
-                'value' => $periodicite->getValue(),
-            ];
-        }, $periodicites), 200);
     }
 
     #[Route('/types', name: 'app_tontine_types', methods: ['GET'])]

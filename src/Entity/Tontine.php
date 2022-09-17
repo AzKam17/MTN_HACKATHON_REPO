@@ -309,4 +309,22 @@ class Tontine
 
         return $this;
     }
+
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'nom' => $this->getNom(),
+            'solde' => $this->getSolde(),
+            'montant' => $this->getMontant()->getValeur(),
+            'periodicite' => $this->getPeriodicite()->getValue(),
+            'createdBy' => $this->getCreatedBy()->getUsername(),
+            'slug' => $this->getSlug(),
+            'compteur' => $this->getCompteur(),
+            'createdAt' => $this->getCreatedAt()->format('d/m/Y'),
+            'updatedAt' => $this->getUpdatedAt()->format('d/m/Y'),
+            'isActive' => $this->isIsActive(),
+            'type' => $this->getType()->getValue(),
+        ];
+    }
 }
