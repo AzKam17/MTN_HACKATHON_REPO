@@ -21,32 +21,36 @@ class CheckStateUserCotisation
         Tontine $tontine
     )
     {
-        if ($tontine->getCompteur() <= 0) {
-            throw new \Exception('La tontine n\'a pas encore commencé');
+        try {
+            if ($tontine->getCompteur() <= 0) {
+                throw new \Exception('La tontine n\'a pas encore commencé');
+            }
+
+            //Check if user is member of tontine
+            $userTontine = $this->manager->getRepository(UserTontine::class)->findOneBy([
+                'user' => $user,
+                'tontine' => $tontine
+            ]);
+
+            //if user is not member of tontine, throw exception
+            if (!$userTontine) {
+                throw new \Exception('Vous n\'êtes pas membre de cette tontine');
+            }
+
+            //Find last cotisation of user
+            $lastCotisation = $this->manager->getRepository(Cotisation::class)->findOneBy([
+                'user' => $user,
+                'tontine' => $tontine
+            ], ['id' => 'DESC']);
+
+            //if tontine compteur is sup or equal to last cotisation tour, user has paid
+            if ($lastCotisation && ($lastCotisation->getTour() >= $tontine->getCompteur())) {
+                return true;
+            }
+
+            return false;
+        }catch (\Exception $e){
+            return false;
         }
-
-        //Check if user is member of tontine
-        $userTontine = $this->manager->getRepository(UserTontine::class)->findOneBy([
-            'user' => $user,
-            'tontine' => $tontine
-        ]);
-
-        //if user is not member of tontine, throw exception
-        if (!$userTontine) {
-            throw new \Exception('Vous n\'êtes pas membre de cette tontine');
-        }
-
-        //Find last cotisation of user
-        $lastCotisation = $this->manager->getRepository(Cotisation::class)->findOneBy([
-            'user' => $user,
-            'tontine' => $tontine
-        ], ['id' => 'DESC']);
-
-        //if tontine compteur is sup or equal to last cotisation tour, user has paid
-        if ($lastCotisation && ($lastCotisation->getTour() >= $tontine->getCompteur())) {
-            return true;
-        }
-
-        return false;
     }
 }
