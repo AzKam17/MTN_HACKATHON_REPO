@@ -42,18 +42,26 @@ class TransactionRepository extends ServiceEntityRepository
     }
 
 
-    //Get Tontine related transactions
-    public function getTontinesTransactions(Tontine $tontine)
+    //Get Tontine related transactions sender
+    public function getTontinesTransactionsSdr(Tontine $tontine): array
     {
-        //Find all transactions where typeRcv or typeSdr is tontine and sender or receiver is equal to tontine id
         return $this->createQueryBuilder('t')
-            ->where('t.typeRcv = :tontine')
-            ->orWhere('t.typeSdr = :tontine')
+            ->andWhere('t.idRcv = :tontine')
+            ->andWhere('t.typeRcv = :typeRcv')
+            ->setParameter('tontine', $tontine->getId())
+            ->setParameter('typeRcv', 'tontine')
+            ->getQuery()
+            ->getResult();
+    }
 
-            ->andWhere('t.idRcv = :tontineId')
-            ->orWhere('t.idSdr = :tontineId')
-            ->setParameter('tontine', 'tontine')
-            ->setParameter('tontineId', $tontine->getId())
+    //Get Tontine related transactions receiver
+    public function getTontinesTransactionsRcv(Tontine $tontine): array
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.idSdr = :tontine')
+            ->andWhere('t.typeSdr = :typeSdr')
+            ->setParameter('tontine', $tontine->getId())
+            ->setParameter('typeSdr', 'tontine')
             ->getQuery()
             ->getResult();
     }
