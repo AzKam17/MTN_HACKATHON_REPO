@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/api/transaction')]
 class TransactionController extends AbstractController
 {
-    #[Route('/transfert', name: 'app_transaction')]
+    #[Route('/transfert', name: 'app_transaction', methods: ['POST'])]
     public function transfert(Transfert $transfert, Request $request, EntityManagerInterface $manager): JsonResponse
     {
         //Get POST data
@@ -53,7 +53,7 @@ class TransactionController extends AbstractController
         ], 201);
     }
 
-    #[Route('/tontine/cotisation', name: 'app_transaction_tontine_cotisation')]
+    #[Route('/tontine/cotisation', name: 'app_transaction_tontine_cotisation', methods: ['POST'])]
     public function tontine(CotisationTontine $cotisationTontine, Request $request, EntityManagerInterface $manager): JsonResponse
     {
         //Get POST data
@@ -90,7 +90,7 @@ class TransactionController extends AbstractController
         ], 201);
     }
 
-    #[Route('/retrait', name: 'app_transaction_retrait')]
+    #[Route('/retrait', name: 'app_transaction_retrait', methods: ['POST'])]
     public function retrait(Retrait $retrait, Request $request, EntityManagerInterface $manager): JsonResponse
     {
         //Get POST data

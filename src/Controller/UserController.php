@@ -6,6 +6,7 @@ use App\Entity\Transaction;
 use App\Entity\User;
 use App\Repository\TontineRepository;
 use App\Repository\TransactionRepository;
+use App\Service\Transaction\GetUserTransactions;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -16,37 +17,12 @@ class UserController extends AbstractController
 {
     //Find User Transactions
     #[Route('/transactions', name: 'user_transactions', methods: ['GET'])]
-    public function findUserTransactions(TransactionRepository $repository, TontineRepository $tontineRepository): JsonResponse
+    public function findUserTransactions(GetUserTransactions $getUserTransactions): JsonResponse
     {
         /** @var User $user */
         $user = $this->getUser();
-        $transactions = $repository->getUsersTransactions($user);
-        return $this->json(array_map(function (Transaction $transaction) use ($tontineRepository) {
-            return array_merge([
-                'id' => $transaction->getId(),
-                'idSdr' => $transaction->getIdSdr(),
-                'idRcv' => $transaction->getIdRcv(),
-                'createdAt' => $transaction->getCreatedAt(),
-                'typeRcv' => $transaction->getTypeRcv(),
-                'typeSdr' => $transaction->getTypeSdr(),
-                'state' => $transaction->getState(),
-                'montant' => $transaction->getMontant(),
-                'type' => $transaction->getType(),
-            ],
-            // If typeRcv or typeSdr is tontine then add tontine
-            (
-                $transaction->ifTontine()
-                    ?
-                    [
-                        'tontine' => [
-                            'id' => $transaction->getTontineId(),
-                            'name' => $tontineRepository->find($transaction->getTontineId())->getNom(),
-                            'solde' => $tontineRepository->find($transaction->getTontineId())->getSolde()
-                        ]
-                    ]: []
-                )
-            );
-        }, $transactions), 200);
+        $transactions = $getUserTransactions($user);
+        return $this->json($transactions, 200);
     }
 
     //Get actuel user id
@@ -83,17 +59,16 @@ class UserController extends AbstractController
 
     //Get User infos
     #[Route('/infos', name: 'user_infos', methods: ['GET'])]
-    public function findUserInfos(): JsonResponse
+    public function findUserInfos(TransactionRepository $transactionRepository, GetUserTransactions $getUserTransactions): JsonResponse
     {
         /** @var User $user */
         $user = $this->getUser();
-        return $this->json([
-            'id' => $user->getId(),
-            'nom' => $user->getNom(),
-            'prenom' => $user->getPrenom(),
-            'tel' => $user->getTel(),
-            'solde' => $user->getSolde(),
-        ], 200);
+        return $this->json(array_merge(
+            $user->toArray(),
+            [
+                'transactions' => $getUserTransactions($user),
+            ]
+        ), 200);
     }
 
     //Get User infos from tel
