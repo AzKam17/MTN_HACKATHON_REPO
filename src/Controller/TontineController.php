@@ -16,6 +16,7 @@ use App\Repository\TransactionRepository;
 use App\Repository\TypeTontineRepository;
 use App\Service\Tontine\AddMember;
 use App\Service\Tontine\AvancementTontine;
+use App\Service\Tontine\CheckStateUserCotisation;
 use App\Service\Tontine\CreateTontine;
 use App\Service\Tontine\GetUserTontintes;
 use App\Service\Tontine\RemoveMember;
@@ -160,14 +161,19 @@ class TontineController extends AbstractController
     }
 
     #[Route('/my-tontines', name: 'app_tontine_all', methods: ['GET'])]
-    public function findAllTontine(GetUserTontintes $getUserTontintes, TransactionRepository $repository): JsonResponse
+    public function findAllTontine(CheckStateUserCotisation $checkStateUserCotisation,GetUserTontintes $getUserTontintes, TransactionRepository $repository): JsonResponse
     {
         /** @var User $user */
         $user = $this->getUser();
         $tontines = $getUserTontintes($user);
-        return $this->json(array_map(function(Tontine $tontine) use ($repository) {
+        return $this->json(array_map(/**
+         * @throws \Exception
+         */ function(Tontine $tontine) use ($checkStateUserCotisation, $repository) {
             return array_merge(
                 $tontine->toArray(),
+                [
+                    'stateCotisation' => $checkStateUserCotisation($tontine, $user),
+                ],
                 ['history' => array_merge(
                     array_map(function(Transaction $historique){
                         return $historique->toArray();
@@ -192,13 +198,9 @@ class TontineController extends AbstractController
         }, $types), 200);
     }
 
-    #[Route('/avancement/{tontineId}', name: 'app_tontine_avancement', methods: ['GET'])]
-    public function getAvancement(string $tontineId, AvancementTontine $avancementTontine, TontineRepository $tontineRepository): JsonResponse
+    #[Route('/avancement/{id}', name: 'app_tontine_avancement', methods: ['GET'])]
+    public function getAvancement(Tontine $tontine, AvancementTontine $avancementTontine, TontineRepository $tontineRepository): JsonResponse
     {
-
-        //Find tontine from id
-        $tontine = $tontineRepository->find($tontineId);
-
         //If tontine doesnt exist
         if(!$tontine){
             return $this->json([
@@ -206,9 +208,7 @@ class TontineController extends AbstractController
             ], 404);
         }
 
-        $avancementTontine = $avancementTontine($tontineId);
-
-        return $this->json($avancementTontine, 200);
+        return $this->json($tontine->getAvancement(), 200);
     }
 
     #[Route('/activate/{id}', name: 'app_tontine_activate', methods: ['GET'])]

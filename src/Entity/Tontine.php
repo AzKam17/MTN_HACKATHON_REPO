@@ -318,7 +318,9 @@ class Tontine
         $compteur = $this->getCompteur() ?? 0;
 
         //Get all cotisations for this tontine equal to the compteur
-        $cotisations = $this->getCotisations();
+        $cotisations = $this->getCotisations()->filter(function (Cotisation $cotisation) use ($compteur) {
+            return $cotisation->getTour() === $compteur;
+        });
 
         $users = [];
         foreach ($cotisations as $cotisation) {
