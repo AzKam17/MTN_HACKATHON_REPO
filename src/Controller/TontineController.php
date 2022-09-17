@@ -168,11 +168,11 @@ class TontineController extends AbstractController
         $tontines = $getUserTontintes($user);
         return $this->json(array_map(/**
          * @throws \Exception
-         */ function(Tontine $tontine) use ($checkStateUserCotisation, $repository) {
+         */ function(Tontine $tontine) use ($checkStateUserCotisation, $repository, $user) {
             return array_merge(
                 $tontine->toArray(),
                 [
-                    'stateCotisation' => $checkStateUserCotisation($tontine, $user),
+                    'stateCotisation' => $checkStateUserCotisation($user, $tontine),
                 ],
                 ['history' => array_merge(
                     array_map(function(Transaction $historique){
