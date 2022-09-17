@@ -110,6 +110,7 @@ class TontineController extends AbstractController
         }
         return $this->json([
             'message' => 'Member added',
+            'result' => $tontine->toArray()
         ], 201);
     }
 
@@ -151,6 +152,7 @@ class TontineController extends AbstractController
         }
         return $this->json([
             'message' => 'Member removed',
+            'result' => $tontine->toArray()
         ], 201);
     }
 
@@ -161,30 +163,17 @@ class TontineController extends AbstractController
         $user = $this->getUser();
         $tontines = $getUserTontintes($user);
         return $this->json(array_map(function(Tontine $tontine) use ($repository) {
-            return [
-                'id' => $tontine->getId(),
-                'nom' => $tontine->getNom(),
-                'solde' => $tontine->getSolde(),
-                'montant' => $tontine->getMontant()->getValeur(),
-                'periodicite' => $tontine->getPeriodicite()->getValue(),
-                'createdBy' => $tontine->getCreatedBy()->getUsername(),
-                'members' => array_map(function(UserTontine $user){
-                    return [
-                        'id' => $user->getId(),
-                        'username' => $user->getUser()->getUsername(),
-                        'nom' => $user->getUser()->getNom(),
-                        'prenom' => $user->getUser()->getPrenom(),
-                    ];
-                }, $tontine->getMembres()->toArray()),
-                'history' => array_map(function(Transaction $historique){
+            return array_merge(
+                $tontine->toArray(),
+                ['history' => array_map(function(Transaction $historique){
                     return [
                         'id' => $historique->getId(),
                         'montant' => $historique->getMontant(),
                         'state' => $historique->getState(),
                         'createdAt' => $historique->getCreatedAt()->format('Y-m-d H:i:s'),
                     ];
-                }, $repository->getTontinesTransactions($tontine)),
-            ];
+                }, $repository->getTontinesTransactions($tontine))]
+            );
         }, $tontines), 200);
     }
 
