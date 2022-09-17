@@ -25,8 +25,8 @@ class TransactionController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
 
-        //Retrieve receiver user
-        $receiver = $manager->getRepository(User::class)->find($data['idReceiver']);
+        //Retrieve receiver user by tel
+        $receiver = $manager->getRepository(User::class)->findOneBy(['tel' => $data['receiverTel']]);
 
         //If receiver doesn't exist, return error
         if(!$receiver){
