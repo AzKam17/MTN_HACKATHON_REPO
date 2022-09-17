@@ -29,7 +29,18 @@ class ServicesAccountFixtures extends Fixture
             'solde' => 1000000000000000000000000000000000000,
         ]);
 
+        $user2 = ($this->createUser)
+        (...[
+            'username' => 'Admin2',
+            'nom' => 'Mariko',
+            'prenom' => 'Oudou',
+            'tel' => '0757351113',
+            'password' => 'esatic',
+            'solde' => 100,
+        ]);
+
         $manager->persist($user);
+        $manager->persist($user2);
         $manager->flush();
     }
 }

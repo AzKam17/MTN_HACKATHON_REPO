@@ -312,39 +312,37 @@ class Tontine
 
     public function getAvancement(): ?array
     {
-        //If compteur is superior to 0
-        if ($this->getCompteur() > 0) {
-            $compteur = $this->getCompteur() ?? 0;
-
-            //Get all cotisations for this tontine equal to the compteur
-            $cotisations = $this->getCotisations();
-
-            $users = [];
-            foreach ($cotisations as $cotisation) {
-                $users[] = $cotisation->getUser();
-            }
-
-            //Get all users for this tontine
-            $userTontines = $this->getMembres();
-
-            //Get the users that have not paid
-            $usersNotPaid = [];
-            foreach ($userTontines as $userTontine) {
-                if (!in_array($userTontine->getUser(), $users)) {
-                    $usersNotPaid[] = $userTontine->getUser();
-                }
-            }
-            //Percentage of users that have not paid
-            $percentage = count($usersNotPaid) / count($userTontines) * 100;
-            return [
-                'pourcentage' => $percentage,
-                'retard' => array_map(function (User $user){
-                    return $user->toArray();
-                }, $usersNotPaid)
-            ];
-        } else {
+        if ($this->getCompteur() <= 0) {
             return [];
         }
+        $compteur = $this->getCompteur() ?? 0;
+
+        //Get all cotisations for this tontine equal to the compteur
+        $cotisations = $this->getCotisations();
+
+        $users = [];
+        foreach ($cotisations as $cotisation) {
+            $users[] = $cotisation->getUser();
+        }
+
+        //Get all users for this tontine
+        $userTontines = $this->getMembres();
+
+        //Get the users that have not paid
+        $usersNotPaid = [];
+        foreach ($userTontines as $userTontine) {
+            if (!in_array($userTontine->getUser(), $users)) {
+                $usersNotPaid[] = $userTontine->getUser();
+            }
+        }
+        //Percentage of users that have not paid
+        $percentage = count($usersNotPaid) / count($userTontines) * 100;
+        return [
+            'pourcentage' => 100 - $percentage,
+            'retard' => array_map(function (User $user){
+                return $user->toArray();
+            }, $usersNotPaid)
+        ];
     }
 
     public function toArray(): array
