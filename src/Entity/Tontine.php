@@ -312,6 +312,41 @@ class Tontine
 
     public function toArray(): array
     {
+        //If compteur is superior to 0
+        if ($this->getCompteur() > 0) {
+            $compteur = $this->getCompteur() ?? 0;
+
+            //Get all cotisations for this tontine equal to the compteur
+            $cotisations = $this->getCotisations();
+
+            $users = [];
+            foreach ($cotisations as $cotisation) {
+                $users[] = $cotisation->getUser();
+            }
+
+            //Get all users for this tontine
+            $userTontines = $tontine->getMembres();
+
+            //Get the users that have not paid
+            $usersNotPaid = [];
+            foreach ($userTontines as $userTontine) {
+                if (!in_array($userTontine->getUser(), $users)) {
+                    $usersNotPaid[] = $userTontine->getUser();
+                }
+            }
+            //Percentage of users that have not paid
+            $percentage = count($usersNotPaid) / count($userTontines) * 100;
+            $avancement = [
+                'pourcentage' => $percentage,
+                'retard' => array_map(function (User $user){
+                    return $user->toArray();
+                }, $usersNotPaid)
+            ];
+        } else {
+            $avancement = [];
+        }
+
+
         return [
             'id' => $this->getId(),
             'nom' => $this->getNom(),
@@ -325,6 +360,7 @@ class Tontine
             'updatedAt' => $this->getUpdatedAt()->format('d/m/Y'),
             'isActive' => $this->isIsActive(),
             'type' => $this->getType()->getValue(),
+            'avancement' => $avancement,
             'members' => $this
                 ->getMembres()
                 ->map(function (UserTontine $userTontine){

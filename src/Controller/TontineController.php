@@ -192,11 +192,9 @@ class TontineController extends AbstractController
         }, $types), 200);
     }
 
-    #[Route('/avancement', name: 'app_tontine_avancement', methods: ['GET'])]
-    public function getAvancement(AvancementTontine $avancementTontine, TontineRepository $tontineRepository): JsonResponse
+    #[Route('/avancement/{tontineId}', name: 'app_tontine_avancement', methods: ['GET'])]
+    public function getAvancement(string $tontineId, AvancementTontine $avancementTontine, TontineRepository $tontineRepository): JsonResponse
     {
-        //Get tontine id from query
-        $tontineId = $this->request->query->get('tontine');
 
         //Find tontine from id
         $tontine = $tontineRepository->find($tontineId);
