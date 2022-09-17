@@ -62,12 +62,12 @@ class TontineController extends AbstractController
         }catch (\Exception $e){
             return $this->json([
                 'message' => 'Internal server error _ ' . $e->getMessage(),
-                'result' => $tontine->toArray()
             ], 500);
         }
 
         return $this->json([
             'message' => 'Tontine created',
+            'result' => $tontine->toArray()
         ], 201);
     }
 
