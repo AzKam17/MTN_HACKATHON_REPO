@@ -211,7 +211,7 @@ class TontineController extends AbstractController
         return $this->json($avancementTontine, 200);
     }
 
-    #[Route('/{id}', name: 'app_tontine_activate', methods: ['GET'])]
+    #[Route('/activate/{id}', name: 'app_tontine_activate', methods: ['GET'])]
     public function activateTontine(Tontine $tontine, EntityManagerInterface $manager): JsonResponse
     {
         //If tontine doesnt exist
@@ -222,7 +222,7 @@ class TontineController extends AbstractController
         }
 
         //If tontine is already active
-        if($tontine->getCompteur() >= 0){
+        if($tontine->getCompteur() > 0){
             return $this->json([
                 'message' => 'Tontine is already active',
             ], 403);
