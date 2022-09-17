@@ -125,7 +125,8 @@ class TontineController extends AbstractController
         try{
             //Find Tontine and User to add
             $tontine = $manager->getRepository(Tontine::class)->find($data['tontine']);
-            $userToRemove = $manager->getRepository(User::class)->find($data['user']);
+            //Find User from tel
+            $userToAdd = $manager->getRepository(User::class)->findOneBy(['username' => $data['tel']]);
             //If user doesnt exist
             if(!$userToRemove){
                 return $this->json([
