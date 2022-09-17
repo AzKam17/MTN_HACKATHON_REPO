@@ -2,6 +2,7 @@
 
 namespace App\Service\Transaction;
 
+use App\Entity\Cotisation;
 use App\Entity\Tontine;
 use App\Entity\Transaction;
 use App\Entity\User;
@@ -47,10 +48,15 @@ class CotisationTontine
             $transaction->setState('done');
             $transaction->setMontant($montant);
 
+            $cotisation = new Cotisation();
+            $cotisation->setTour($receiver->getCompteur());
+            $cotisation->setUser($sender);
+
             //Persist
             $this->entityManager->persist($transaction);
             $this->entityManager->persist($sender);
             $this->entityManager->persist($receiver);
+            $this->entityManager->persist($cotisation);
 
             $this->entityManager->flush();
             $this->entityManager->getConnection()->commit();
