@@ -141,4 +141,34 @@ class Transaction
 
         return $this;
     }
+
+    public function ifTontine(): bool
+    {
+        return $this->typeRcv === 'tontine' || $this->typeSdr === 'tontine';
+    }
+
+    public function whoIsTontine(): string
+    {
+        return $this->typeRcv === 'tontine' ? 'receiver' : 'sender';
+    }
+
+    public function getTontineId(): int
+    {
+        return $this->whoIsTontine() === 'receiver' ? $this->idRcv : $this->idSdr;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'idSdr' => $this->idSdr,
+            'idRcv' => $this->idRcv,
+            'createdAt' => $this->createdAt->format('Y-m-d H:i:s'),
+            'typeRcv' => $this->typeRcv,
+            'typeSdr' => $this->typeSdr,
+            'state' => $this->state,
+            'montant' => $this->montant,
+            'type' => $this->type,
+        ];
+    }
 }

@@ -52,8 +52,7 @@ class Retrait
                 'retrait-fees',
                 $fees * 0.5
             );
-
-            return $tranfertFees;
         }
+        return $tranfertWithdraw;
     }
 }

@@ -162,6 +162,7 @@ class TontineController extends AbstractController
             return [
                 'id' => $tontine->getId(),
                 'nom' => $tontine->getNom(),
+                'solde' => $tontine->getSolde(),
                 'montant' => $tontine->getMontant()->getValeur(),
                 'periodicite' => $tontine->getPeriodicite()->getValue(),
                 'createdBy' => $tontine->getCreatedBy()->getUsername(),
