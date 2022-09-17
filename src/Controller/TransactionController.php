@@ -86,7 +86,7 @@ class TransactionController extends AbstractController
 
         return $this->json([
             'message' => 'Transaction done',
-            'tontine' => $result->toArray()
+            'result' => $result->toArray()
         ], 201);
     }
 

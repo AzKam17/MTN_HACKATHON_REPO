@@ -167,12 +167,7 @@ class TontineController extends AbstractController
             return array_merge(
                 $tontine->toArray(),
                 ['history' => array_map(function(Transaction $historique){
-                    return [
-                        'id' => $historique->getId(),
-                        'montant' => $historique->getMontant(),
-                        'state' => $historique->getState(),
-                        'createdAt' => $historique->getCreatedAt()->format('Y-m-d H:i:s'),
-                    ];
+                    return $historique->toArray();
                 }, $repository->getTontinesTransactions($tontine))]
             );
         }, $tontines), 200);
