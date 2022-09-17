@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Transaction;
 use App\Entity\User;
+use App\Repository\TontineRepository;
 use App\Repository\TransactionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,12 +16,37 @@ class UserController extends AbstractController
 {
     //Find User Transactions
     #[Route('/transactions', name: 'user_transactions', methods: ['GET'])]
-    public function findUserTransactions(TransactionRepository $repository): JsonResponse
+    public function findUserTransactions(TransactionRepository $repository, TontineRepository $tontineRepository): JsonResponse
     {
         /** @var User $user */
         $user = $this->getUser();
         $transactions = $repository->getUsersTransactions($user);
-        return $this->json($transactions, 200);
+        return $this->json(array_map(function (Transaction $transaction) use ($tontineRepository) {
+            return array_merge([
+                'id' => $transaction->getId(),
+                'idSdr' => $transaction->getIdSdr(),
+                'idRcv' => $transaction->getIdRcv(),
+                'createdAt' => $transaction->getCreatedAt(),
+                'typeRcv' => $transaction->getTypeRcv(),
+                'typeSdr' => $transaction->getTypeSdr(),
+                'state' => $transaction->getState(),
+                'montant' => $transaction->getMontant(),
+                'type' => $transaction->getType(),
+            ],
+            // If typeRcv or typeSdr is tontine then add tontine
+            (
+                $transaction->ifTontine()
+                    ?
+                    [
+                        'tontine' => [
+                            'id' => $transaction->getTontineId(),
+                            'name' => $tontineRepository->find($transaction->getTontineId())->getNom(),
+                            'solde' => $tontineRepository->find($transaction->getTontineId())->getSolde()
+                        ]
+                    ]: []
+                )
+            );
+        }, $transactions), 200);
     }
 
     //Get actuel user id
