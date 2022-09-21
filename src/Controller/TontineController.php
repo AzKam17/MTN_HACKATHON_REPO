@@ -167,23 +167,27 @@ class TontineController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
         $tontines = $getUserTontintes($user);
-        return $this->json(
-            array_map(function(Tontine $tontine) use ($checkStateUserCotisation, $repository, $user) {
-                return array_merge(
-                    $tontine->toArray(),
-                    [
-                        'stateCotisation' => $checkStateUserCotisation($user, $tontine),
-                    ],
-                    ['history' => array_merge(
-                        array_map(function(Transaction $historique){
-                            return $historique->toArray();
-                        }, $repository->getTontinesTransactionsSdr($tontine)),
-                        array_map(function(Transaction $historique){
-                            return $historique->toArray();
-                        }, $repository->getTontinesTransactionsRcv($tontine)),
-                    )]
-                );
-            }, $tontines), 200);
+        $final_tontine = array_map(function(Tontine $tontine) use ($checkStateUserCotisation, $repository, $user) {
+            return array_merge(
+                $tontine->toArray(),
+                [
+                    'stateCotisation' => $checkStateUserCotisation($user, $tontine),
+                ],
+                ['history' => array_merge(
+                    array_map(function(Transaction $historique){
+                        return $historique->toArray();
+                    }, $repository->getTontinesTransactionsSdr($tontine)),
+                    array_map(function(Transaction $historique){
+                        return $historique->toArray();
+                    }, $repository->getTontinesTransactionsRcv($tontine)),
+                )]
+            );
+        }, $tontines);
+        //Sort by id DESC with usort
+        usort($final_tontine, function($a, $b) {
+            return $b['id'] <=> $a['id'];
+        });
+        return $this->json($final_tontine, 200);
     }
 
     #[Route('/types', name: 'app_tontine_types', methods: ['GET'])]
