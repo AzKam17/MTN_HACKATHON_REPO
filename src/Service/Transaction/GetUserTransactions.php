@@ -52,9 +52,9 @@ class GetUserTransactions
         }, $transactions);
         usort(
             $final_transac,
-            //Sort by date using Carbon
-            function($a, $b) {
-                return Carbon::parse($b['createdAt'])->timestamp - Carbon::parse($a['createdAt'])->timestamp;
+            //Sort by id desc
+            function ($a, $b) {
+                return $b['id'] - $a['id'];
             }
         );
         return $final_transac;
