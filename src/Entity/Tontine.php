@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\TontineRepository;
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
+use DateTimeImmutable;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -62,10 +64,10 @@ class Tontine
     private Collection $cotisations;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    private ?DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $updatedAt = null;
+    private ?DateTimeInterface $updatedAt = null;
 
     #[ORM\Column]
     private ?bool $isActive = null;
@@ -81,7 +83,7 @@ class Tontine
     }
 
     #[ORM\PrePersist]
-    public function prePersistOps()
+    public function prePersistOps(): void
     {
         $this->setCompteur(0);
         $slugger = new AsciiSlugger();
@@ -259,7 +261,7 @@ class Tontine
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
     }
@@ -272,7 +274,7 @@ class Tontine
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?DateTimeInterface
     {
         return $this->updatedAt;
     }

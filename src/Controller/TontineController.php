@@ -15,11 +15,11 @@ use App\Repository\TontineRepository;
 use App\Repository\TransactionRepository;
 use App\Repository\TypeTontineRepository;
 use App\Service\Tontine\AddMember;
-use App\Service\Tontine\AvancementTontine;
 use App\Service\Tontine\CheckStateUserCotisation;
 use App\Service\Tontine\CreateTontine;
 use App\Service\Tontine\GetUserTontintes;
 use App\Service\Tontine\RemoveMember;
+use Carbon\Carbon;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -106,15 +106,16 @@ class TontineController extends AbstractController
                 ], 403);
             }
             $addMember($userToAdd, $tontine);
+
+            return $this->json([
+                'message' => 'Member added',
+                'result' => $tontine->toArray()
+            ], 201);
         }catch (\Exception $e){
             return $this->json([
                 'message' =>  $e->getMessage(),
             ], 500);
         }
-        return $this->json([
-            'message' => 'Member added',
-            'result' => $tontine->toArray()
-        ], 201);
     }
 
     #[Route('/remove-member', name: 'app_tontine_remove_member', methods: ['POST'])]
@@ -129,7 +130,7 @@ class TontineController extends AbstractController
             //Find Tontine and User to add
             $tontine = $manager->getRepository(Tontine::class)->find($data['tontine']);
             //Find User from tel
-            $userToAdd = $manager->getRepository(User::class)->findOneBy(['username' => $data['tel']]);
+            $userToRemove = $manager->getRepository(User::class)->findOneBy(['username' => $data['tel']]);
             //If user doesnt exist
             if(!$userToRemove){
                 return $this->json([
@@ -166,9 +167,11 @@ class TontineController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
         $tontines = $getUserTontintes($user);
-        return $this->json(array_map(/**
-         * @throws \Exception
-         */ function(Tontine $tontine) use ($checkStateUserCotisation, $repository, $user) {
+        $final_tontines = array_map(
+            /**
+             * @throws \Exception
+             */
+            function(Tontine $tontine) use ($checkStateUserCotisation, $repository, $user) {
             return array_merge(
                 $tontine->toArray(),
                 [
@@ -183,7 +186,15 @@ class TontineController extends AbstractController
                     }, $repository->getTontinesTransactionsRcv($tontine)),
                 )]
             );
-        }, $tontines), 200);
+        }, $tontines);
+        $final_tontines = usort(
+            $final_tontines,
+            //Sort by date desc with Carbon
+            function($a, $b) {
+                return Carbon::parse($b['createdAt'])->timestamp - Carbon::parse($a['createdAt'])->timestamp;
+            }
+        );
+        return $this->json($final_tontines, 200);
     }
 
     #[Route('/types', name: 'app_tontine_types', methods: ['GET'])]
@@ -199,7 +210,7 @@ class TontineController extends AbstractController
     }
 
     #[Route('/avancement/{id}', name: 'app_tontine_avancement', methods: ['GET'])]
-    public function getAvancement(Tontine $tontine, AvancementTontine $avancementTontine, TontineRepository $tontineRepository): JsonResponse
+    public function getAvancement(Tontine $tontine, TontineRepository $tontineRepository): JsonResponse
     {
         //If tontine doesnt exist
         if(!$tontine){

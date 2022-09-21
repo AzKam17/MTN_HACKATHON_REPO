@@ -6,6 +6,7 @@ use App\Entity\Transaction;
 use App\Entity\User;
 use App\Repository\TontineRepository;
 use App\Repository\TransactionRepository;
+use Carbon\Carbon;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class GetUserTransactions
@@ -23,7 +24,7 @@ class GetUserTransactions
     {
         $tontineRepository = $this->tontineRepository;
         $transactions = $this->repository->getUsersTransactions($user);
-        return array_map(function (Transaction $transaction) use ($tontineRepository) {
+        $final_transac = array_map(function (Transaction $transaction) use ($tontineRepository) {
             return array_merge([
                 'id' => $transaction->getId(),
                 'idSdr' => $transaction->getIdSdr(),
@@ -45,9 +46,17 @@ class GetUserTransactions
                             'name' => $tontineRepository->find($transaction->getTontineId())->getNom(),
                             'solde' => $tontineRepository->find($transaction->getTontineId())->getSolde()
                         ]
-                    ]: []
+                    ] : []
                 )
             );
         }, $transactions);
+        usort(
+            $final_transac,
+            //Sort by date using Carbon
+            function($a, $b) {
+                return Carbon::parse($b['createdAt'])->timestamp - Carbon::parse($a['createdAt'])->timestamp;
+            }
+        );
+        return $final_transac;
     }
 }
