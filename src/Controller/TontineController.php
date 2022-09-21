@@ -167,34 +167,23 @@ class TontineController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
         $tontines = $getUserTontintes($user);
-        $final_tontines = array_map(
-            /**
-             * @throws \Exception
-             */
-            function(Tontine $tontine) use ($checkStateUserCotisation, $repository, $user) {
-            return array_merge(
-                $tontine->toArray(),
-                [
-                    'stateCotisation' => $checkStateUserCotisation($user, $tontine),
-                ],
-                ['history' => array_merge(
-                    array_map(function(Transaction $historique){
-                        return $historique->toArray();
-                    }, $repository->getTontinesTransactionsSdr($tontine)),
-                    array_map(function(Transaction $historique){
-                        return $historique->toArray();
-                    }, $repository->getTontinesTransactionsRcv($tontine)),
-                )]
-            );
-        }, $tontines);
-        $final_tontines = usort(
-            $final_tontines,
-            //Sort by date desc with Carbon
-            function($a, $b) {
-                return Carbon::parse($b['createdAt'])->timestamp - Carbon::parse($a['createdAt'])->timestamp;
-            }
-        );
-        return $this->json($final_tontines, 200);
+        return $this->json(
+            array_map(function(Tontine $tontine) use ($checkStateUserCotisation, $repository, $user) {
+                return array_merge(
+                    $tontine->toArray(),
+                    [
+                        'stateCotisation' => $checkStateUserCotisation($user, $tontine),
+                    ],
+                    ['history' => array_merge(
+                        array_map(function(Transaction $historique){
+                            return $historique->toArray();
+                        }, $repository->getTontinesTransactionsSdr($tontine)),
+                        array_map(function(Transaction $historique){
+                            return $historique->toArray();
+                        }, $repository->getTontinesTransactionsRcv($tontine)),
+                    )]
+                );
+            }, $tontines), 200);
     }
 
     #[Route('/types', name: 'app_tontine_types', methods: ['GET'])]

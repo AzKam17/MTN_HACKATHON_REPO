@@ -54,7 +54,7 @@ class GetUserTransactions
             $final_transac,
             //Sort by id desc
             function ($a, $b) {
-                return $b['id'] - $a['id'];
+                return $b['id'] <=> $a['id'];
             }
         );
         return $final_transac;
