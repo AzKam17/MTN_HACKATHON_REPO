@@ -106,9 +106,7 @@
             "php bin/console d:d:c",
             "php bin/console d:s:c",
             "php bin/console d:f:l --no-interaction -q",
-            "php bin/console lexik:jwt:generate-keypair --overwrite",
-            "php bin/console mtn:collection",
-            "php bin/console mtn:disbursements"
+            "php bin/console lexik:jwt:generate-keypair --overwrite"
         ],
         "post-update-cmd": [
             "@auto-scripts"
