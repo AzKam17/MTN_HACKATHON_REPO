@@ -4,68 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "03d7cd7fd3065e3bd64b102202c60108",
+    "content-hash": "2476cdff4a89d0f60cc89809dc4eac67",
     "packages": [
-        {
-            "name": "adhocore/cli",
-            "version": "0.3.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/adhocore/php-cli.git",
-                "reference": "11a741d4f5a3b05938fc29eb79bcfad2049cb5d5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/adhocore/php-cli/zipball/11a741d4f5a3b05938fc29eb79bcfad2049cb5d5",
-                "reference": "11a741d4f5a3b05938fc29eb79bcfad2049cb5d5",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^6.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Ahc\\Cli\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jitendra Adhikari",
-                    "email": "jiten.adhikary@gmail.com"
-                }
-            ],
-            "description": "Command line interface library for PHP",
-            "keywords": [
-                "PHP7",
-                "argument-parser",
-                "argv-parser",
-                "cli",
-                "cli-action",
-                "cli-app",
-                "cli-color",
-                "cli-option",
-                "cli-writer",
-                "command",
-                "console",
-                "console-app",
-                "php-cli",
-                "stream-input",
-                "stream-output"
-            ],
-            "support": {
-                "issues": "https://github.com/adhocore/php-cli/issues",
-                "source": "https://github.com/adhocore/php-cli/tree/0.3.3"
-            },
-            "time": "2019-03-09T06:43:34+00:00"
-        },
         {
             "name": "doctrine/annotations",
             "version": "1.13.3",
@@ -3070,62 +3010,6 @@
                 "source": "https://github.com/sensiolabs/SensioFrameworkExtraBundle/tree/v6.2.8"
             },
             "time": "2022-09-05T16:44:56+00:00"
-        },
-        {
-            "name": "sparkplug/momoapi-php",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sparkplug/momoapi-php.git",
-                "reference": "fd673da5b4816a1e6cadddb01588c59652e81733"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sparkplug/momoapi-php/zipball/fd673da5b4816a1e6cadddb01588c59652e81733",
-                "reference": "fd673da5b4816a1e6cadddb01588c59652e81733",
-                "shasum": ""
-            },
-            "require": {
-                "adhocore/cli": "^0.3.3",
-                "ext-curl": "*",
-                "ext-json": "*",
-                "ext-mbstring": "*",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "php-coveralls/php-coveralls": "1.1.*",
-                "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "~2.0",
-                "symfony/process": "~2.8"
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "MomoApi\\": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Moses Mugisha",
-                    "email": "mossplix@gmail.com"
-                }
-            ],
-            "description": "MTN momo bindings to PHP",
-            "keywords": [
-                "api",
-                "mtn momo",
-                "payment processing"
-            ],
-            "support": {
-                "issues": "https://github.com/sparkplug/momoapi-php/issues",
-                "source": "https://github.com/sparkplug/momoapi-php/tree/master"
-            },
-            "time": "2020-08-24T14:16:07+00:00"
         },
         {
             "name": "stella-maris/clock",
@@ -11075,9 +10959,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "sparkplug/momoapi-php": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
