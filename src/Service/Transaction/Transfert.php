@@ -5,11 +5,13 @@ namespace App\Service\Transaction;
 use App\Entity\Transaction;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class Transfert
 {
     public function __construct(
         private EntityManagerInterface $entityManager,
+        private ValidatorInterface $validator
     ) {
     }
 
@@ -45,6 +47,11 @@ class Transfert
             $transaction->setType($typeTransaction);
             $transaction->setState('done');
             $transaction->setMontant($montant);
+
+            $errors = $this->validator->validate($transaction);
+            if (count($errors) > 0) {
+                throw new \Exception($errors->get(0)->getMessage());
+            }
 
             //Persist
             $this->entityManager->persist($transaction);

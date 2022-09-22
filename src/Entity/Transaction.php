@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\TransactionRepository;
 use Carbon\CarbonImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\HasLifecycleCallbacks]
 #[ORM\Table(name: 't_transactions')]
@@ -35,6 +37,11 @@ class Transaction
     private ?string $state = null;
 
     #[ORM\Column]
+    #[Assert\Range(
+        notInRangeMessage: 'Le montant doit être compris entre {{ min }} et {{ max }}',
+        min: 0,
+        max: 1000000000,
+    )]
     private ?float $montant = null;
 
     #[ORM\Column(length: 255)]
