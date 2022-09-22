@@ -28,7 +28,11 @@ class AddLibToTransactionArrayOther
                 $sender = $this->entityManager->getRepository(User::class)->find($transactionArray['idSdr']);
                 $transactionArray['lib'] = "Cotisation - {$sender->getNom()} {$sender->getPrenom()}  - {$transaction->getCreatedAt()->format('d/m/Y - H:i')}";
                 break;
-                //TODO add cases depot_tontine
+            case 'depot_cotisation':
+                //Retrive tontine from transaction idRcv
+                $receiver = $this->entityManager->getRepository(User::class)->find($transactionArray['idRcv']);
+                $transactionArray['lib'] = "Versement Tontine - {$receiver->getNom()} {$receiver->getPrenom()}  - {$transaction->getCreatedAt()->format('d/m/Y - H:i')}";
+                break;
             default:
                 $transactionArray['lib'] = 'Inconnu';
                 break;
