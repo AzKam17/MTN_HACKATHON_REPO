@@ -67,6 +67,10 @@ class TransactionRepository extends ServiceEntityRepository
     }
 
     //Get User related transactions
+    /**
+     * @param User $user
+     * @return Transaction[]
+     */
     public function getUsersTransactions(User $user)
     {
         //Find all transactions where typeRcv or typeSdr is user and sender or receiver is equal to user id
@@ -76,8 +80,10 @@ class TransactionRepository extends ServiceEntityRepository
             
             ->andWhere('t.idRcv = :userId')
             ->orWhere('t.idSdr = :userId')
+            ->andWhere('t.type != :type')
             ->setParameter('user', 'user')
             ->setParameter('userId', $user->getId())
+            ->setParameter('type', 'retrait-fees')
             ->getQuery()
             ->getResult();
     }

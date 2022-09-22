@@ -19,6 +19,7 @@ use App\Service\Tontine\CheckStateUserCotisation;
 use App\Service\Tontine\CreateTontine;
 use App\Service\Tontine\GetUserTontintes;
 use App\Service\Tontine\RemoveMember;
+use App\Service\Transaction\AddLibToTransactionArrayOther;
 use Carbon\Carbon;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -162,23 +163,30 @@ class TontineController extends AbstractController
     }
 
     #[Route('/my-tontines', name: 'app_tontine_all', methods: ['GET'])]
-    public function findAllTontine(CheckStateUserCotisation $checkStateUserCotisation,GetUserTontintes $getUserTontintes, TransactionRepository $repository): JsonResponse
+    public function findAllTontine(
+        CheckStateUserCotisation $checkStateUserCotisation,
+        GetUserTontintes $getUserTontintes,
+        TransactionRepository $repository,
+        AddLibToTransactionArrayOther $addLibToTransactionArrayOther
+    ): JsonResponse
     {
         /** @var User $user */
         $user = $this->getUser();
         $tontines = $getUserTontintes($user);
-        $final_tontine = array_map(function(Tontine $tontine) use ($checkStateUserCotisation, $repository, $user) {
+        $final_tontine = array_map(function(Tontine $tontine) use ($checkStateUserCotisation, $repository, $user, $addLibToTransactionArrayOther) {
             return array_merge(
                 $tontine->toArray(),
                 [
                     'stateCotisation' => $checkStateUserCotisation($user, $tontine),
                 ],
                 ['history' => array_merge(
-                    array_map(function(Transaction $historique){
-                        return $historique->toArray();
+                    // For receiving transactions from tontine
+                    array_map(function(Transaction $historique) use ($addLibToTransactionArrayOther) {
+                        return $addLibToTransactionArrayOther($historique);
                     }, $repository->getTontinesTransactionsSdr($tontine)),
-                    array_map(function(Transaction $historique){
-                        return $historique->toArray();
+                    // For sending transactions from tontine
+                    array_map(function(Transaction $historique) use ($addLibToTransactionArrayOther) {
+                        return $addLibToTransactionArrayOther($historique);
                     }, $repository->getTontinesTransactionsRcv($tontine)),
                 )]
             );

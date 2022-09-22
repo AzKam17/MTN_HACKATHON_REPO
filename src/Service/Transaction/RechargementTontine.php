@@ -33,7 +33,7 @@ class RechargementTontine
             $admin,
             $client,
             'provider',
-            'provider',
+            'user',
             'depot',
             $montant
         );

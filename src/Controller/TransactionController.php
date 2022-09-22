@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Tontine;
 use App\Entity\User;
+use App\Service\Transaction\AddLibToTransactionArray;
 use App\Service\Transaction\CotisationTontine;
 use App\Service\Transaction\RechargementTontine;
 use App\Service\Transaction\Retrait;
@@ -18,7 +19,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class TransactionController extends AbstractController
 {
     #[Route('/transfert', name: 'app_transaction', methods: ['POST'])]
-    public function transfert(Transfert $transfert, Request $request, EntityManagerInterface $manager): JsonResponse
+    public function transfert(
+        Transfert $transfert,
+        Request $request,
+        EntityManagerInterface $manager,
+        AddLibToTransactionArray $addLibToTransactionArray
+    ): JsonResponse
     {
         //Get POST data
         $data = json_decode($request->getContent(), true);
@@ -50,12 +56,17 @@ class TransactionController extends AbstractController
 
         return $this->json([
             'message' => 'Transaction done',
-            'result' => $result->toArray()
+            'result' => $addLibToTransactionArray($result)
         ], 201);
     }
 
     #[Route('/tontine/cotisation', name: 'app_transaction_tontine_cotisation', methods: ['POST'])]
-    public function tontine(CotisationTontine $cotisationTontine, Request $request, EntityManagerInterface $manager): JsonResponse
+    public function tontine(
+        CotisationTontine $cotisationTontine,
+        Request $request,
+        EntityManagerInterface $manager,
+        AddLibToTransactionArray $addLibToTransactionArray
+    ): JsonResponse
     {
         //Get POST data
         $data = json_decode($request->getContent(), true);
@@ -87,12 +98,17 @@ class TransactionController extends AbstractController
 
         return $this->json([
             'message' => 'Transaction done',
-            'result' => $result->toArray()
+            'result' => $addLibToTransactionArray($result)
         ], 201);
     }
 
     #[Route('/retrait', name: 'app_transaction_retrait', methods: ['POST'])]
-    public function retrait(Retrait $retrait, Request $request, EntityManagerInterface $manager): JsonResponse
+    public function retrait(
+        Retrait $retrait,
+        Request $request,
+        EntityManagerInterface $manager,
+        AddLibToTransactionArray $addLibToTransactionArray
+    ): JsonResponse
     {
         //Get POST data
         $data = json_decode($request->getContent(), true);
@@ -119,12 +135,17 @@ class TransactionController extends AbstractController
 
         return $this->json([
             'message' => 'Transaction done',
-            'object' => $result->toArray(),
+            'object' => $addLibToTransactionArray($result),
         ], 201);
     }
 
     #[Route('/rechargement', name: 'app_transaction_rechargement', methods: ['POST'])]
-    public function rechargement(RechargementTontine $rechargementTontine, Request $request, EntityManagerInterface $manager): JsonResponse
+    public function rechargement(
+        RechargementTontine $rechargementTontine,
+        Request $request,
+        EntityManagerInterface $manager,
+        AddLibToTransactionArray $addLibToTransactionArray
+    ): JsonResponse
     {
         //Get POST data
         $data = json_decode($request->getContent(), true);
@@ -145,7 +166,7 @@ class TransactionController extends AbstractController
 
         return $this->json([
             'message' => 'Transaction done',
-            'object' => $result->toArray(),
+            'object' => $addLibToTransactionArray($result),
         ], 201);
     }
 }
