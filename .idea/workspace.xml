@@ -4,45 +4,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f49ff8b8-a93a-4308-b801-48d42b2a2161" name="Changes" comment="Ajout champs montant et type pour les transactions&#10;Service de Depot sur les comptes et de creation de comptes&#10;Fixtures pour le compte Admin">
-      <change afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/App.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/Pages/Auth/HomePage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/Pages/Login.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/Pages/Register.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/Utils/AnimationLayout.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/styles/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/postcss.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/tests.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/EventListener/JWTCreatedListener.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/Tontine/AddMember.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/Tontine/CreateTontine.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/Tontine/GetUserTontintes.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/Tontine/RemoveMember.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/Transaction/Retrait.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/Transaction/Transfert.php" afterDir="false" />
+    <list default="true" id="f49ff8b8-a93a-4308-b801-48d42b2a2161" name="Changes" comment="Cleaning files">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/62bc7f32-644e-45a8-b8a1-ec3dd11b32e5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/62bc7f32-644e-45a8-b8a1-ec3dd11b32e5/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.test" beforeDir="false" afterPath="$PROJECT_DIR$/.env.test" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/mtn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mtn.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/ServicesAccountFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/ServicesAccountFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Tontine.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Tontine.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TontineRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TontineRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TransactionRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TransactionRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/Transaction/DepotCompte.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Transaction/DepotCompte.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/bootstrap.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/controllers.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/controllers/hello_controller.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/login.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/Pages/Auth/HomePage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/Pages/Login.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/Pages/Register.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/Utils/AnimationLayout.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20220908220840.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20220908231307.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20220908231846.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20220908231950.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20220909124322.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20220909124441.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20220909205023.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20220909211502.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ZReactController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ZReactController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/Tontine/AvancementTontine.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Service/CreateUserTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Service/CreateUserTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Service/Transaction/DepotCompteTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Service/Transaction/DepotCompteTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,12 +49,27 @@
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="do-no-touch-breaks-tracking" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="NamedScopeManager">
+    <scope name="Symfony" pattern="file[mtn]:src/*" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -205,37 +216,59 @@
       <path value="$PROJECT_DIR$/vendor/stella-maris/clock" />
       <path value="$PROJECT_DIR$/vendor/lexik/jwt-authentication-bundle" />
       <path value="$PROJECT_DIR$/vendor/namshi/jose" />
+      <path value="$PROJECT_DIR$/vendor/symfony/apache-pack" />
+      <path value="$PROJECT_DIR$/vendor/symfony/panther" />
+      <path value="$PROJECT_DIR$/vendor/php-webdriver/webdriver" />
+      <path value="$PROJECT_DIR$/vendor/fabpot/goutte" />
+      <path value="$PROJECT_DIR$/vendor/symfony/uid" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-uuid" />
+      <path value="$PROJECT_DIR$/vendor/anlutro/curl" />
     </include_path>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectId" id="2EUbdRoIxBwzNkrs1ZrHcZHBLGf" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/azk/Documents/Codes/mtn&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/azk/Documents/Codes/mtn/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;build.tools&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Applications/PhpStorm.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/azk/Documents/Codes/mtn/src/Service/Transaction/MTN",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/azk/Documents/Codes/mtn/node_modules/prettier",
+    "run.code.analysis.last.selected.profile": "aDefault",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "ts.external.directory.path": "/Applications/PhpStorm.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Service/Transaction/MTN" />
+      <recent name="$PROJECT_DIR$/src/Command/MTN" />
+      <recent name="$PROJECT_DIR$/src/Service/Transaction" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/assets/js" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/js/Pages/Auth" />
       <recent name="$PROJECT_DIR$/assets/styles" />
       <recent name="$PROJECT_DIR$/phpdocker/nginx/certs" />
       <recent name="$PROJECT_DIR$/phpdocker/certs" />
@@ -261,51 +294,361 @@
       <workItem from="1662811640851" duration="621000" />
       <workItem from="1662819551992" duration="7605000" />
       <workItem from="1662867149085" duration="4061000" />
-      <workItem from="1662985601663" duration="200000" />
+      <workItem from="1662985601663" duration="3975000" />
+      <workItem from="1663014349112" duration="18402000" />
+      <workItem from="1663245592669" duration="4101000" />
+      <workItem from="1663315695536" duration="666000" />
+      <workItem from="1663327478774" duration="1807000" />
+      <workItem from="1663414355078" duration="16739000" />
+      <workItem from="1663461615067" duration="3930000" />
+      <workItem from="1663515745000" duration="605000" />
+      <workItem from="1663653341287" duration="1625000" />
+      <workItem from="1663751031255" duration="37861000" />
     </task>
-    <task id="LOCAL-00001" summary="Ajout Carbon&#10;Operations lifecycles User">
-      <created>1662676145403</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
+    <task id="LOCAL-00011" summary="htaccess symfony">
+      <created>1663000951423</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
       <option name="project" value="LOCAL" />
-      <updated>1662676145403</updated>
+      <updated>1663000951423</updated>
     </task>
-    <task id="LOCAL-00002" summary="Ajout phpMyAdmin">
-      <created>1662676292633</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
+    <task id="LOCAL-00012" summary="htaccess symfony">
+      <created>1663001383990</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
       <option name="project" value="LOCAL" />
-      <updated>1662676292633</updated>
+      <updated>1663001383990</updated>
     </task>
-    <task id="LOCAL-00003" summary="Base Tontine (solde, nom)">
-      <created>1662676489440</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
+    <task id="LOCAL-00013" summary="Montant Tontine">
+      <created>1663242212420</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
       <option name="project" value="LOCAL" />
-      <updated>1662676489440</updated>
+      <updated>1663242212420</updated>
     </task>
-    <task id="LOCAL-00004" summary="Entites de base">
-      <created>1662679296242</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
+    <task id="LOCAL-00014" summary="Periodicite, Type Tontine">
+      <created>1663242379487</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1662679296242</updated>
+      <updated>1663242379487</updated>
     </task>
-    <task id="LOCAL-00005" summary="State pour les transactions">
-      <created>1662713691090</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
+    <task id="LOCAL-00015" summary="Build">
+      <created>1663243053020</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
-      <updated>1662713691090</updated>
+      <updated>1663243053020</updated>
     </task>
-    <task id="LOCAL-00006" summary="Ajout champs montant et type pour les transactions&#10;Service de Depot sur les comptes et de creation de comptes&#10;Fixtures pour le compte Admin">
-      <created>1662730671011</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
+    <task id="LOCAL-00016" summary="Build">
+      <created>1663243870652</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
       <option name="project" value="LOCAL" />
-      <updated>1662730671011</updated>
+      <updated>1663243870652</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00017" summary="User id from token and user id from tel">
+      <created>1663245687713</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1663245687713</updated>
+    </task>
+    <task id="LOCAL-00018" summary="User id from token and user id from tel">
+      <created>1663246140190</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1663246140190</updated>
+    </task>
+    <task id="LOCAL-00019" summary="User infos">
+      <created>1663246398399</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1663246398399</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Infos in ids request">
+      <created>1663247360417</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1663247360417</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Verification User Exists">
+      <created>1663327723461</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1663327723461</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Verification User Exists by Username or tel">
+      <created>1663327880040</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1663327880040</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Amelioration historique tontine">
+      <created>1663415590376</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1663415590376</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Routes for Transfert Cotisation and retrait">
+      <created>1663417230320</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1663417230320</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Tontine controller updated">
+      <created>1663417769676</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1663417769676</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Tontine controller updated">
+      <created>1663417903704</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1663417903704</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Add User by Username">
+      <created>1663418156747</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1663418156747</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Updated render toArray">
+      <created>1663419565599</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1663419565599</updated>
+    </task>
+    <task id="LOCAL-00029" summary="updated Output find my tontines">
+      <created>1663419887058</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1663419887058</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Updated delete User from tontine to delete from tel">
+      <created>1663420262243</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1663420262243</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Updated result get my tontines">
+      <created>1663420642067</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1663420642067</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Transfert by tel">
+      <created>1663420941318</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1663420941318</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Updated get user transaction to services and user infos">
+      <created>1663421714122</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1663421714122</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Fixed Bug Tontine transactions">
+      <created>1663422288889</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1663422288889</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Persisting cotisations objects">
+      <created>1663422791294</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1663422791294</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Rechargement route&#10;Avancement tontine">
+      <created>1663428586287</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1663428586287</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Tontine Avancement">
+      <created>1663435724516</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1663435724516</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Bug correction avancement tontine and upgrade ttl token">
+      <created>1663435994141</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1663435994141</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Methods for avancement tontine">
+      <created>1663436358633</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1663436358633</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Amelioration avancement, second service account">
+      <created>1663436625380</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1663436625380</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Tontine activation route">
+      <created>1663436962283</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1663436962283</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Tontine activation route bug">
+      <created>1663437235195</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1663437235195</updated>
+    </task>
+    <task id="LOCAL-00043" summary="User Mariko fixtures sold to 10k">
+      <created>1663438701415</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1663438701415</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Correction bug cotisation tontine">
+      <created>1663445160863</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1663445160863</updated>
+    </task>
+    <task id="LOCAL-00045" summary="bug correction find avancement&#10;state cotisation">
+      <created>1663446092225</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1663446092225</updated>
+    </task>
+    <task id="LOCAL-00046" summary="bug correction fix missing $user">
+      <created>1663448926001</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1663448926001</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Missing CheckStateUserCotisation.php">
+      <created>1663449093640</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1663449093640</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Added try catch">
+      <created>1663449279065</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1663449279065</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Test sort transactions and tontines per creation date">
+      <created>1663753359852</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1663753359852</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Test sort transactions per ids">
+      <created>1663753808018</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1663753808019</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Test sort transactions per ids and remove sort in tontine">
+      <created>1663754067796</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1663754067796</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Sort transactions and tontines per ids">
+      <created>1663754868258</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1663754868258</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Set lib for transactions">
+      <created>1663843493313</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1663843493313</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Protection contre les transactions negatives">
+      <created>1663843992049</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1663843992049</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Lib versement tontine">
+      <created>1663844131309</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1663844131309</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Installation Messenger">
+      <created>1663866369356</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1663866369356</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Installation Messenger forget mtn commands">
+      <created>1663866571060</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1663866571060</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Link with MTN MoMo API">
+      <created>1663895971156</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1663895971156</updated>
+    </task>
+    <task id="LOCAL-00059" summary="More details for worker">
+      <created>1663896641359</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1663896641359</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -323,13 +666,42 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Ajout Carbon&#10;Operations lifecycles User" />
-    <MESSAGE value="Ajout phpMyAdmin" />
-    <MESSAGE value="Base Tontine (solde, nom)" />
-    <MESSAGE value="Entites de base" />
-    <MESSAGE value="State pour les transactions" />
-    <MESSAGE value="Ajout champs montant et type pour les transactions&#10;Service de Depot sur les comptes et de creation de comptes&#10;Fixtures pour le compte Admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout champs montant et type pour les transactions&#10;Service de Depot sur les comptes et de creation de comptes&#10;Fixtures pour le compte Admin" />
+    <MESSAGE value="Rechargement route&#10;Avancement tontine" />
+    <MESSAGE value="Tontine Avancement" />
+    <MESSAGE value="Bug correction avancement tontine and upgrade ttl token" />
+    <MESSAGE value="Methods for avancement tontine" />
+    <MESSAGE value="Amelioration avancement, second service account" />
+    <MESSAGE value="Tontine activation route" />
+    <MESSAGE value="Tontine activation route bug" />
+    <MESSAGE value="User Mariko fixtures sold to 10k" />
+    <MESSAGE value="Correction bug cotisation tontine" />
+    <MESSAGE value="bug correction find avancement&#10;state cotisation" />
+    <MESSAGE value="bug correction fix missing $user" />
+    <MESSAGE value="Missing CheckStateUserCotisation.php" />
+    <MESSAGE value="Added try catch" />
+    <MESSAGE value="Test sort transactions and tontines per creation date" />
+    <MESSAGE value="Test sort transactions per ids" />
+    <MESSAGE value="Test sort transactions per ids and remove sort in tontine" />
+    <MESSAGE value="Sort transactions and tontines per ids" />
+    <MESSAGE value="Set lib for transactions" />
+    <MESSAGE value="Protection contre les transactions negatives" />
+    <MESSAGE value="Lib versement tontine" />
+    <MESSAGE value="Installation Messenger" />
+    <MESSAGE value="Installation Messenger forget mtn commands" />
+    <MESSAGE value="Link with MTN MoMo API" />
+    <MESSAGE value="More details for worker" />
+    <MESSAGE value="Cleaning files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaning files" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/assets/js/Utils/RouteGuard.jsx</url>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

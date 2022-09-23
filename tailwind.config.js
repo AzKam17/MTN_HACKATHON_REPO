@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       colors: {
         'azk': '#9dc3e8',
+        'azl': '#b9d5ed',
       },
     },
   },
