@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Tontine;
+use App\Entity\Transaction;
 use App\Entity\User;
 use App\Service\Transaction\AddLibToTransactionArray;
 use App\Service\Transaction\CotisationTontine;
@@ -88,7 +89,7 @@ class TransactionController extends AbstractController
 
         try{
             $result = $cotisationTontine(
-                $user, $receiver, 'user', 'tontine', 'tontine_cotisation', $montant
+                $user, $receiver, 'user', 'tontine', Transaction::TYPE_COTISATION, $montant
             );
         }catch (\Exception $e){
             return $this->json([

@@ -88,6 +88,16 @@ class TransactionRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function getAllPendingTransactions()
+    {
+        return $this->createQueryBuilder('t')
+            ->select('t.type as type, t.additionalData as uuid')
+            ->where('t.state = :state')
+            ->setParameter('state', 'pending_mtn')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Transaction[] Returns an array of Transaction objects
 //     */

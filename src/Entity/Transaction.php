@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\TransactionRepository;
 use Carbon\CarbonImmutable;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -13,6 +14,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: TransactionRepository::class)]
 class Transaction
 {
+    public const TYPE_DEPOT = 'depot';
+    public const TYPE_COTISATION = 'tontine_cotisation';
+    public const TYPE_RETRAIT = 'retrait';
+    public const TYPE_TRANSFERT = 'transfert';
+    public const TYPE_DEPOT_COTISATION = 'depot_cotisation';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -46,6 +53,9 @@ class Transaction
 
     #[ORM\Column(length: 255)]
     private ?string $type = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $additionalData = null;
 
     public function getId(): ?int
     {
@@ -177,5 +187,17 @@ class Transaction
             'montant' => $this->montant,
             'type' => $this->type,
         ];
+    }
+
+    public function getAdditionalData(): ?string
+    {
+        return $this->additionalData;
+    }
+
+    public function setAdditionalData(?string $additionalData): self
+    {
+        $this->additionalData = $additionalData;
+
+        return $this;
     }
 }

@@ -7,6 +7,7 @@
         "php": ">=8.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "anlutro/curl": "^1.5",
         "doctrine/annotations": "^1.0",
         "doctrine/doctrine-bundle": "^2.7",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
@@ -105,8 +106,10 @@
             "php bin/console d:d:d --force",
             "php bin/console d:d:c",
             "php bin/console d:s:c",
-            "php bin/console d:f:l --no-interaction -q",
-            "php bin/console lexik:jwt:generate-keypair --overwrite"
+            "php bin/console d:f:l --no-interaction",
+            "php bin/console lexik:jwt:generate-keypair --overwrite",
+            "php bin/console mtn:collection",
+            "php bin/console mtn:disbursements"
         ],
         "post-update-cmd": [
             "@auto-scripts"

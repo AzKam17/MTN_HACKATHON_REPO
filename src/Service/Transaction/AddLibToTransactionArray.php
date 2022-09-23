@@ -23,23 +23,23 @@ class AddLibToTransactionArray
         $transactionArray = $transaction->toArray();
 
         switch ($transactionArray['type']) {
-            case 'tontine_cotisation':
+            case Transaction::TYPE_COTISATION:
                 //Retrive tontine from transaction idRcv
                 $tontine = $this->entityManager->getRepository(Tontine::class)->find($transactionArray['idRcv']);
                 $transactionArray['lib'] = "Cotisation - Tontine {$tontine->getNom()} - {$transaction->getCreatedAt()->format('d/m/Y - H:i')}";
                 break;
-            case 'depot':
+            case Transaction::TYPE_DEPOT:
                 $transactionArray['lib'] = "Dépôt sur compte - {$transaction->getCreatedAt()->format('d/m/Y - H:i')}";
                 break;
-            case 'retrait':
+            case Transaction::TYPE_RETRAIT:
                 $transactionArray['lib'] = "Retrait sur compte - {$transaction->getCreatedAt()->format('d/m/Y - H:i')}";
                 break;
-            case 'transfert':
+            case Transaction::TYPE_TRANSFERT:
                 // Retrive receiver from transaction idRcv
                 $receiver = $this->entityManager->getRepository(User::class)->find($transactionArray['idRcv']);
                 $transactionArray['lib'] = "Transfert - {$receiver->getNom()} {$receiver->getPrenom()} - {$transaction->getCreatedAt()->format('d/m/Y - H:i')}";
                 break;
-            case 'depot_cotisation':
+            case Transaction::TYPE_DEPOT_COTISATION:
                 //Retrive tontine from transaction idRcv
                 $tontine = $this->entityManager->getRepository(Tontine::class)->find($transactionArray['idSdr']);
                 $transactionArray['lib'] = "Versement Tontine - Tontine {$tontine->getNom()} - {$transaction->getCreatedAt()->format('d/m/Y - H:i')}";

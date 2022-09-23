@@ -4,14 +4,17 @@ namespace App\Service\Transaction;
 
 use App\Entity\Transaction;
 use App\Entity\User;
+use App\Message\TransactionMessage;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class Transfert
 {
     public function __construct(
         private EntityManagerInterface $entityManager,
-        private ValidatorInterface $validator
+        private ValidatorInterface $validator,
+        private MessageBusInterface $bus
     ) {
     }
 
@@ -45,7 +48,7 @@ class Transfert
             $transaction->setTypeSdr($typeSender);
             $transaction->setTypeRcv($typeReceiver);
             $transaction->setType($typeTransaction);
-            $transaction->setState('done');
+            $transaction->setState('pending');
             $transaction->setMontant($montant);
 
             $errors = $this->validator->validate($transaction);
@@ -60,6 +63,7 @@ class Transfert
 
             $this->entityManager->flush();
             $this->entityManager->getConnection()->commit();
+            $this->bus->dispatch(new TransactionMessage($transaction->getId()));
             return $transaction;
         }catch (\Exception $e) {
             //Rollback transaction

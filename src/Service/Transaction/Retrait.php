@@ -33,8 +33,8 @@ class Retrait
             $provider,
             'user',
             'provider',
-            'retrait',
-            $total
+            Transaction::TYPE_RETRAIT,
+            $montant
         );
 
         if ($tranfertWithdraw){
@@ -50,7 +50,7 @@ class Retrait
                 'provider',
                 'admin',
                 'retrait-fees',
-                $fees * 0.5
+                $total
             );
         }
         return $tranfertWithdraw;

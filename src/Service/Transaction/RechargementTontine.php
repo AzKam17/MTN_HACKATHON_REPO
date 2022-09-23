@@ -5,12 +5,13 @@ namespace App\Service\Transaction;
 use App\Entity\Transaction;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 class RechargementTontine
 {
     public function __construct(
         private EntityManagerInterface $entityManager,
-        private Transfert $transfert,
+        private Transfert $transfert
     ) {
     }
 
@@ -34,7 +35,7 @@ class RechargementTontine
             $client,
             'provider',
             'user',
-            'depot',
+            Transaction::TYPE_DEPOT,
             $montant
         );
     }
