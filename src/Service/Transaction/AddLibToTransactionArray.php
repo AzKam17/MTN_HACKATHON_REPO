@@ -6,13 +6,16 @@ use App\Entity\Tontine;
 use App\Entity\Transaction;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Security;
 
 //To use when asked by User
 class AddLibToTransactionArray
 {
     //Add EntityManager to constructor
+
     public function __construct(
         private EntityManagerInterface $entityManager,
+        private  Security $security
     ) {
     }
 
@@ -34,8 +37,17 @@ class AddLibToTransactionArray
                 break;
             case Transaction::TYPE_TRANSFERT:
                 // Retrive receiver from transaction idRcv
-                $receiver = $this->entityManager->getRepository(User::class)->find($transactionArray['idRcv']);
-                $transactionArray['lib'] = "{$receiver->getNom()} {$receiver->getPrenom()} - {$transaction->getCreatedAt()->format('d/m/Y - H:i')}";
+                // if receiver is the user
+                /** @var User $user */
+                $user = $this->security->getUser();
+                $message = "{$transaction->getCreatedAt()->format('d/m/Y - H:i')}";
+                if ($transactionArray['idRcv'] === $user->getId()) {
+                    $sender = $this->entityManager->getRepository(User::class)->find($transactionArray['idSdr']);
+                    $transactionArray['lib'] = "De {$sender->getNom()} {$sender->getPrenom()} {$message}";
+                } else {
+                    $receiver = $this->entityManager->getRepository(User::class)->find($transactionArray['idRcv']);
+                    $transactionArray['lib'] = "À {$receiver->getNom()} {$receiver->getPrenom()} {$message}";
+                }
                 break;
             case Transaction::TYPE_DEPOT_COTISATION:
                 //Retrive tontine from transaction idRcv
