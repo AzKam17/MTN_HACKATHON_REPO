@@ -26,23 +26,21 @@ class AddLibToTransactionArray
             case Transaction::TYPE_COTISATION:
                 //Retrive tontine from transaction idRcv
                 $tontine = $this->entityManager->getRepository(Tontine::class)->find($transactionArray['idRcv']);
-                $transactionArray['lib'] = "Cotisation - Tontine {$tontine->getNom()} - {$transaction->getCreatedAt()->format('d/m/Y - H:i')}";
-                break;
-            case Transaction::TYPE_DEPOT:
-                $transactionArray['lib'] = "Dépôt sur compte - {$transaction->getCreatedAt()->format('d/m/Y - H:i')}";
+                $transactionArray['lib'] = "Tontine {$tontine->getNom()} - {$transaction->getCreatedAt()->format('d/m/Y - H:i')}";
                 break;
             case Transaction::TYPE_RETRAIT:
-                $transactionArray['lib'] = "Retrait sur compte - {$transaction->getCreatedAt()->format('d/m/Y - H:i')}";
+            case Transaction::TYPE_DEPOT:
+                $transactionArray['lib'] = "{$transaction->getCreatedAt()->format('d/m/Y - H:i')}";
                 break;
             case Transaction::TYPE_TRANSFERT:
                 // Retrive receiver from transaction idRcv
                 $receiver = $this->entityManager->getRepository(User::class)->find($transactionArray['idRcv']);
-                $transactionArray['lib'] = "Transfert - {$receiver->getNom()} {$receiver->getPrenom()} - {$transaction->getCreatedAt()->format('d/m/Y - H:i')}";
+                $transactionArray['lib'] = "{$receiver->getNom()} {$receiver->getPrenom()} - {$transaction->getCreatedAt()->format('d/m/Y - H:i')}";
                 break;
             case Transaction::TYPE_DEPOT_COTISATION:
                 //Retrive tontine from transaction idRcv
                 $tontine = $this->entityManager->getRepository(Tontine::class)->find($transactionArray['idSdr']);
-                $transactionArray['lib'] = "Versement Tontine - Tontine {$tontine->getNom()} - {$transaction->getCreatedAt()->format('d/m/Y - H:i')}";
+                $transactionArray['lib'] = "Versement - {$tontine->getNom()} - {$transaction->getCreatedAt()->format('d/m/Y - H:i')}";
                 break;
             default:
                 $transactionArray['lib'] = 'Inconnu';
