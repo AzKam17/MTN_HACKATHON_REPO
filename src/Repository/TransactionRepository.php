@@ -83,7 +83,7 @@ class TransactionRepository extends ServiceEntityRepository
             ->andWhere('t.type != :type')
             ->setParameter('user', 'user')
             ->setParameter('userId', $user->getId())
-            ->setParameter('type', 'retrait-fees')
+            ->setParameter('type', Transaction::TYPE_FRAIS_RETRAIT)
             ->getQuery()
             ->getResult();
     }

@@ -51,7 +51,7 @@ class Retrait
                 'admin',
                 'retrait-fees',
                 $total,
-                Transaction::STATUS_TERMINE
+                Transaction::TYPE_FRAIS_RETRAIT
             );
         }
         return $tranfertWithdraw;

@@ -19,6 +19,7 @@ class Transaction
     public const TYPE_RETRAIT = 'retrait';
     public const TYPE_TRANSFERT = 'transfert';
     public const TYPE_DEPOT_COTISATION = 'depot_cotisation';
+    public const TYPE_FRAIS_RETRAIT = 'retrait-fees';
 
     public const ENTREE = [
         self::TYPE_DEPOT,
@@ -29,6 +30,11 @@ class Transaction
     public const SORTIE = [
         self::TYPE_RETRAIT,
         self::TYPE_TRANSFERT,
+    ];
+
+    public const MTN = [
+        self::TYPE_DEPOT,
+        self::TYPE_RETRAIT,
     ];
 
     const STATUS_EN_COURS_MTN = 'pending_mtn';

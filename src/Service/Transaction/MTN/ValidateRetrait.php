@@ -4,6 +4,7 @@ namespace App\Service\Transaction\MTN;
 
 use App\Entity\Params;
 use App\Entity\Transaction;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Goutte\Client;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -62,6 +63,13 @@ class ValidateRetrait
                     break;
                 case 'SUCCESSFUL':
                     $transaction->setState(Transaction::STATUS_TERMINE);
+                    //Get the sender
+                    $sender = $this->em->getRepository(User::class)->find($transaction->getIdSdr());
+                    //Get the receiver
+                    $receiver = $this->em->getRepository(User::class)->find($transaction->getIdRcv());
+                    //Update sender and receiver balance
+                    $sender->setSolde($sender->getSolde() - $transaction->getMontant());
+                    $receiver->setSolde($receiver->getSolde() + $transaction->getMontant());
                     break;
                 default:
                     $transaction->setState(Transaction::STATUS_ECHEC);

@@ -40,8 +40,11 @@ class Transfert
             }
 
             //Update sender and receiver balance
-            $sender->setSolde($sender->getSolde() - $montant);
-            $receiver->setSolde($receiver->getSolde() + $montant);
+            //if type transaction is not in array mtn
+            if(!in_array($typeTransaction, Transaction::MTN)){
+                $sender->setSolde($sender->getSolde() - $montant);
+                $receiver->setSolde($receiver->getSolde() + $montant);
+            }
             //Create Transaction
             $transaction = new Transaction();
             $transaction->setIdSdr($sender->getId());
