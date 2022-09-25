@@ -2,7 +2,9 @@
 
 namespace App\Service\Transaction;
 
+use App\Entity\Tontine;
 use App\Entity\Transaction;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 
 class TransactionCardInfos
@@ -31,6 +33,8 @@ class TransactionCardInfos
         $cardInfos['date'] = $transaction->getCreatedAt()->format('d/m/Y H:i');
         $cardInfos['state'] = $this->getTransactionStatusLibelle($transaction->getState());
         $cardInfos['operateur'] = $this->getOperateurLibelle($transaction->getType());
+        $cardInfos['sdr'] = $this->getObjTransactionRcvSdr($transaction->getIdSdr(), $transaction->getTypeSdr());
+        $cardInfos['rcv'] = $this->getObjTransactionRcvSdr($transaction->getIdRcv(), $transaction->getTypeRcv());
 
         return $cardInfos;
     }
@@ -91,5 +95,17 @@ class TransactionCardInfos
                 break;
         }
         return $libelle;
+    }
+
+    public function getObjTransactionRcvSdr(int $id, string $type){
+        if ($type === 'user'){
+            $obj = $this->manager->getRepository(User::class)->find($id);
+            return "{$obj->getNom()} {$obj->getPrenom()} | {$obj->getUsername()}";
+        }elseif ($type === 'tontine'){
+            $obj = $this->manager->getRepository(Tontine::class)->find($id);
+            return "Tontine {$obj->getNom()}";
+        }
+
+        return 'Système';
     }
 }
