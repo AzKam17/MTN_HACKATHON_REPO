@@ -39,6 +39,19 @@ class TontineRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    /**
+     * @return Tontine[] Returns an array of Tontine objects
+     */
+    public function findStartedTontines(): array
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.compteur >= :val')
+            ->setParameter('val', 0)
+            ->orderBy('t.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 //    /**
 //     * @return Tontine[] Returns an array of Tontine objects
