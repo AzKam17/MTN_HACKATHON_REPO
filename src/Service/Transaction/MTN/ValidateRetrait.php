@@ -56,20 +56,19 @@ class ValidateRetrait
         $transaction = $this->em->getRepository(Transaction::class)->findOneBy(['additionalData' => $uuid]);
         if ($request->statusCode === 200) {
             $data = json_decode($request->body, true);
-            dump($data);
             switch ($data['status']){
                 case 'PENDING':
-                    $transaction->setState('pending_mtn');
+                    $transaction->setState(Transaction::STATUS_EN_COURS_MTN);
                     break;
                 case 'SUCCESSFUL':
-                    $transaction->setState('success');
+                    $transaction->setState(Transaction::STATUS_TERMINE);
                     break;
                 default:
-                    $transaction->setState('failed');
+                    $transaction->setState(Transaction::STATUS_ECHEC);
                     break;
             }
         }else{
-            $transaction->setState('failed');
+            $transaction->setState(Transaction::STATUS_ANNULE);
         }
         $this->em->flush();
         return true;

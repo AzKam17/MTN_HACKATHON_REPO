@@ -59,17 +59,17 @@ class ValidateDepot
             $data = json_decode($request->body, true);
             switch ($data['status']){
                 case 'PENDING':
-                    $transaction->setState('pending_mtn');
+                    $transaction->setState(Transaction::STATUS_EN_COURS_MTN);
                     break;
                 case 'SUCCESSFUL':
-                    $transaction->setState('success');
+                    $transaction->setState(Transaction::STATUS_TERMINE);
                     break;
                 default:
-                    $transaction->setState('failed');
+                    $transaction->setState(Transaction::STATUS_ECHEC);
                     break;
             }
         }else{
-            $transaction->setState('failed');
+            $transaction->setState(Transaction::STATUS_ANNULE);
         }
         $this->em->flush();
         return true;

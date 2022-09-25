@@ -69,6 +69,8 @@ class TransactionCardInfos
             case Transaction::STATUS_TERMINE:
                 $libelle = 'Terminé';
                 break;
+            case Transaction::STATUS_ECHEC:
+                $libelle = 'Echec';
             case Transaction::STATUS_ANNULE:
                 $libelle = 'Annulé';
                 break;

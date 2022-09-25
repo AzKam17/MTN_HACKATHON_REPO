@@ -35,6 +35,7 @@ class Transaction
     const STATUS_EN_COURS = 'pending';
     const STATUS_TERMINE = 'done';
     const STATUS_ANNULE = 'cancelled';
+    const STATUS_ECHEC = 'failed';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
