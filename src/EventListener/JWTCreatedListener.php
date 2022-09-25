@@ -40,11 +40,6 @@ class JWTCreatedListener
         unset($payload['roles']);
 
         $event->setData($payload);
-
-        $header        = $event->getHeader();
-        $header['cty'] = 'JWT';
-
-        $event->setHeader($header);
     }
 
 }

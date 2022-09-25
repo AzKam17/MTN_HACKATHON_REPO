@@ -20,6 +20,22 @@ class Transaction
     public const TYPE_TRANSFERT = 'transfert';
     public const TYPE_DEPOT_COTISATION = 'depot_cotisation';
 
+    public const ENTREE = [
+        self::TYPE_DEPOT,
+        self::TYPE_COTISATION,
+        self::TYPE_DEPOT_COTISATION,
+    ];
+
+    public const SORTIE = [
+        self::TYPE_RETRAIT,
+        self::TYPE_TRANSFERT,
+    ];
+
+    const STATUS_EN_COURS_MTN = 'pending_mtn';
+    const STATUS_EN_COURS = 'pending';
+    const STATUS_TERMINE = 'done';
+    const STATUS_ANNULE = 'cancelled';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

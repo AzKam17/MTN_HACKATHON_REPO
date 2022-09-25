@@ -12,6 +12,7 @@ class AddLibToTransactionArrayOther
 {
     //Add EntityManager to constructor
     public function __construct(
+        private TransactionCardInfos $transactionCardInfos,
         private EntityManagerInterface $entityManager,
     ) {
     }
@@ -26,12 +27,12 @@ class AddLibToTransactionArrayOther
             case 'tontine_cotisation':
                 //Retrive tontine from transaction idRcv
                 $sender = $this->entityManager->getRepository(User::class)->find($transactionArray['idSdr']);
-                $transactionArray['lib'] = "Cotisation - {$sender->getNom()} {$sender->getPrenom()}  - {$transaction->getCreatedAt()->format('d/m/Y - H:i')}";
+                $transactionArray['lib'] = "Cotisation - {$sender->getNom()} {$sender->getPrenom()} - {$this->transactionCardInfos->getTransactionStatusLibelle($transactionArray['state'])} - {$transaction->getCreatedAt()->format('d/m/Y - H:i')}";
                 break;
             case 'depot_cotisation':
                 //Retrive tontine from transaction idRcv
                 $receiver = $this->entityManager->getRepository(User::class)->find($transactionArray['idRcv']);
-                $transactionArray['lib'] = "Versement - {$receiver->getNom()} {$receiver->getPrenom()}  - {$transaction->getCreatedAt()->format('d/m/Y - H:i')}";
+                $transactionArray['lib'] = "Versement - {$receiver->getNom()} {$receiver->getPrenom()} - {$this->transactionCardInfos->getTransactionStatusLibelle($transactionArray['state'])}- {$transaction->getCreatedAt()->format('d/m/Y - H:i')}";
                 break;
             default:
                 $transactionArray['lib'] = 'Inconnu';

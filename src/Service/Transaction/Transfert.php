@@ -27,7 +27,8 @@ class Transfert
         string $typeSender,
         string $typeReceiver,
         string $typeTransaction,
-        float $montant
+        float $montant,
+        string $state = Transaction::STATUS_EN_COURS
     ) : Transaction
     {
         //Start transaction
@@ -48,7 +49,7 @@ class Transfert
             $transaction->setTypeSdr($typeSender);
             $transaction->setTypeRcv($typeReceiver);
             $transaction->setType($typeTransaction);
-            $transaction->setState('pending');
+            $transaction->setState($state);
             $transaction->setMontant($montant);
 
             $errors = $this->validator->validate($transaction);

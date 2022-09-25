@@ -9,6 +9,7 @@ use App\Service\Transaction\AddLibToTransactionArray;
 use App\Service\Transaction\CotisationTontine;
 use App\Service\Transaction\RechargementTontine;
 use App\Service\Transaction\Retrait;
+use App\Service\Transaction\TransactionCardInfos;
 use App\Service\Transaction\Transfert;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -47,7 +48,9 @@ class TransactionController extends AbstractController
 
         try{
             $result = $transfert(
-                $user, $receiver, 'user', 'user', 'transfert', $montant
+                $user,
+                $receiver,
+                'user', 'user', 'transfert', $montant, Transaction::STATUS_TERMINE
             );
         }catch (\Exception $e){
             return $this->json([
@@ -169,5 +172,24 @@ class TransactionController extends AbstractController
             'message' => 'Transaction done',
             'object' => $addLibToTransactionArray($result),
         ], 201);
+    }
+
+    #[Route('/card/{id}', name: 'app_transaction_card', methods: ['GET'])]
+    public function card(
+        Transaction $transaction,
+        TransactionCardInfos $cardInfos
+    ): JsonResponse
+    {
+        //If transaction is not found return error
+        if(!$transaction){
+            return $this->json([
+                'message' => 'Transaction not found',
+            ], 404);
+        }
+
+        return $this->json([
+            'message' => 'Transaction Information',
+            'object' => $cardInfos($transaction),
+        ], 200);
     }
 }

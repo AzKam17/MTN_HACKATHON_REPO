@@ -45,7 +45,7 @@ class CotisationTontine
             $transaction->setTypeSdr($typeSender);
             $transaction->setTypeRcv($typeReceiver);
             $transaction->setType($typeTransaction);
-            $transaction->setState('done');
+            $transaction->setState(Transaction::STATUS_TERMINE);
             $transaction->setMontant($montant);
 
             $cotisation = new Cotisation();

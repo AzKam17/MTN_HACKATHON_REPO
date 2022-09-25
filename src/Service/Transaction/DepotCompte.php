@@ -6,6 +6,7 @@ use App\Entity\Transaction;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 
+//Utilise seulement pour la démo
 class DepotCompte
 {
     public function __construct(
