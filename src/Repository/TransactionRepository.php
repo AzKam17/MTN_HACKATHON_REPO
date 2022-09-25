@@ -88,12 +88,24 @@ class TransactionRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function getAllPendingTransactions()
+    public function getSdrTransactions(User $user): array
     {
         return $this->createQueryBuilder('t')
-            ->select('t.type as type, t.additionalData as uuid')
-            ->where('t.state = :state')
-            ->setParameter('state', 'pending_mtn')
+            ->andWhere('t.idSdr = :user')
+            ->andWhere('t.typeSdr = :typeSdr')
+            ->setParameter('user', $user->getId())
+            ->setParameter('typeSdr', 'user')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getRcvTransactions(User $user): array
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.idRcv = :user')
+            ->andWhere('t.typeRcv = :typeRcv')
+            ->setParameter('user', $user->getId())
+            ->setParameter('typeRcv', 'user')
             ->getQuery()
             ->getResult();
     }

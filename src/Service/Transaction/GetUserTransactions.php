@@ -24,7 +24,8 @@ class GetUserTransactions
     ): array
     {
         $tontineRepository = $this->tontineRepository;
-        $transactions = $this->repository->getUsersTransactions($user);
+        $transactions = $this->repository->getRcvTransactions($user);
+        $transactions[] = $this->repository->getSdrTransactions($user);
         $addLibToTransactionArray = $this->addLibToTransactionArray;
         $final_transac = array_map(function (Transaction $transaction) use ($addLibToTransactionArray) {
             return $addLibToTransactionArray($transaction);
