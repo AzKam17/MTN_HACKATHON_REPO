@@ -24,12 +24,15 @@ class GetUserTransactions
     ): array
     {
         $tontineRepository = $this->tontineRepository;
-        $transactions = $this->repository->getRcvTransactions($user);
-        $transactions[] = $this->repository->getSdrTransactions($user);
+        $transactionsR = $this->repository->getRcvTransactions($user);
+        $transactionsS = $this->repository->getSdrTransactions($user);
         $addLibToTransactionArray = $this->addLibToTransactionArray;
         $final_transac = array_map(function (Transaction $transaction) use ($addLibToTransactionArray) {
             return $addLibToTransactionArray($transaction);
-        }, $transactions);
+        }, $transactionsR);
+        $final_transac = array_merge(array_map(function (Transaction $transaction) use ($addLibToTransactionArray) {
+            return $addLibToTransactionArray($transaction);
+        }, $transactionsS), $final_transac);
         usort(
             $final_transac,
             //Sort by id desc
