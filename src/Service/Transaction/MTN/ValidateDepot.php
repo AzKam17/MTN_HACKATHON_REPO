@@ -55,6 +55,7 @@ class ValidateDepot
 
         //If the response is 202, the transaction is successful
         $transaction = $this->em->getRepository(Transaction::class)->findOneBy(['additionalData' => $uuid]);
+        dump($request);
         if ($request->statusCode === 200) {
             $data = json_decode($request->body, true);
             switch ($data['status']){
