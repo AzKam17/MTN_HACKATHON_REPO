@@ -136,9 +136,17 @@ class TransactionRepository extends ServiceEntityRepository
 //    }
     public function getAllPendingTransactions()
     {
+        return array_merge(
+            $this->getTransactionsByState(Transaction::STATUS_EN_COURS),
+            $this->getTransactionsByState(Transaction::STATUS_EN_COURS_MTN)
+        );
+    }
+
+    public function getTransactionsByState($state)
+    {
         return $this->createQueryBuilder('t')
             ->andWhere('t.state = :state')
-            ->setParameter('state', Transaction::STATUS_EN_COURS)
+            ->setParameter('state', $state)
             ->getQuery()
             ->getResult();
     }
